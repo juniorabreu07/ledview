@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :usuarios
+  devise_for :usuarios, path: "", path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock'}
   #get 'inicio/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'inicio#index'
+
+  resources :usuarios
+
+  scope :admin do 
+    match "/*path", to: "inicio#admin", via: [:get,:post]
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
