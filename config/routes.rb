@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :usuarios, path: "", path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock'}
+  devise_for :clientes
   #get 'inicio/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   root 'inicio#index'
 
   resources :usuarios
+  resources :clientes
 
   scope :admin do 
     match "/*path", to: "inicio#admin", via: [:get,:post]
