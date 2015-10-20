@@ -10,20 +10,20 @@
           <th>Codigo</th>
           <th>Nombre</th>
           <th>Telefono</th>
-          <th>Cudula</th>
+          <th>email</th>
           <th>Direccion</th>
           <th class="centrar"  style="width: 10%">Acciones</th>
         </tr>
         <tr ng-repeat="row in cliente.clientes">
-          <td>{{row.username}}</td>
+          <td>{{row.id}}</td>
           <td>{{row.nombre}} {{row.apellido}}</td>
           <td>{{row.telefono}}</td>
-          <td>{{row.cedula}}</td>
+          <td>{{row.email}}</td>
           <td>{{row.direccion}}</td>
           <td class="centrar">
             <div class="btn-group btn-group-xs" role="group">
-              <a href="/admin/usuarios/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
-              <a class="btn btn-default" ng-click="usuario.eliminarUsuario(row)" ng-if="!row.admin"><i class="glyphicon glyphicon-remove"></i></a>
+              <a href="/admin/cliente/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+              <a class="btn btn-default" ng-click="cliente.eliminarUsuario(row)" ><i class="glyphicon glyphicon-remove"></i></a>
             </div>
           </td>
         </tr>

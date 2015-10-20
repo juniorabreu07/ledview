@@ -2,8 +2,8 @@ angular.module("anuncioApp.clientes").controller( "ClienteCtrl", [ "Cliente", "t
 
   self = @
 
-  Cliente.query().then (cliente) =>
-    @cliente = cliente
+  Cliente.query().then (clientes) =>
+    @clientes = clientes
 
 
   # @eliminarUsuario = (usuario) =>

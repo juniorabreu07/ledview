@@ -3,11 +3,11 @@ angular.module("anuncioApp.clientes").controller( "ClienteNuevoCtrl", ["Cliente"
   self = @
   
   @titulo = "Nuevo Cliente"
-  @cliente = new Cliente
+  @clientes = new Cliente
   console.log "pasooo111"
   
-  guardar: ->
-      console.log "pasooo"
+  guardar: =>
+      console.log "pasooo2234"
       # @cliente.save().then () =>
       #   toaster.pop({type: 'success', title: "Cliente #{@cliente.nombre} #{@cliente.apellido}", body: 'Guardado con exito'})
       # , (e) =>
