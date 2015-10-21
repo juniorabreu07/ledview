@@ -3,6 +3,6 @@ class Cliente < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :anuncios, dependent: :restrict_with_exception
+  # has_many :anuncios, dependent: :restrict_with_exception
 
 end
