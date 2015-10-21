@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
   devise_for :usuarios, path: "", path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock'}
   devise_for :clientes
   #get 'inicio/index'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
   # You can have the root of your site routed with "root"
+  # root 'welcome#index'
   root 'inicio#index'
 
   resources :usuarios

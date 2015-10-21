@@ -40,6 +40,10 @@ class ClientesController < ApplicationController
   # PATCH/PUT /clientes/1
   # PATCH/PUT /clientes/1.json
   def update
+    if cliente_params[:password].blank?
+      cliente_params.delete("password")
+      cliente_params.delete("password_confirmation")
+    end
     respond_to do |format|
       if @cliente.update(cliente_params)
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
@@ -54,11 +58,17 @@ class ClientesController < ApplicationController
   # DELETE /clientes/1
   # DELETE /clientes/1.json
   def destroy
-    @cliente.destroy
-    respond_to do |format|
-      format.html { redirect_to clientes_url, notice: 'Cliente was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    begin
+      @cliente.destroy
+      respond_to do |format|
+        format.html { redirect_to clientes_url, notice: 'Cliente was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    rescue Exception => e
+      puts "========================="
+      puts e.message
+      puts "========================="
+    end  
   end
 
   private
@@ -69,6 +79,6 @@ class ClientesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
-     params.require(:cliente).permit(:id, :nombre, :apellido, :direccion, :telefono, :email , :password, :password_confirmation)
+     params.require(:cliente).permit(:id, :nombre, :apellido, :direccion, :email , :password, :password_confirmation)
     end
 end

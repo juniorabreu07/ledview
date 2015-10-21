@@ -4,52 +4,52 @@
 <div class="row">
   <div class="col-sm-8 col-xs-12">
     <ng-form class="form-horizontal" novalidate name="form">
-      <div class="form-group" ng-class="{'has-error':form.codigo.$invalid}">
+      <!-- <div class="form-group" ng-class="{'has-error':form.codigo.$invalid}">
         <label for="inputCodigo" class="col-sm-2 control-label">Codigo</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" id="inputCodigo" placeholder="Codigo" name="codigo" ng-model="cliente.cliente.username" required>
+          <input type="text" class="form-control" id="inputCodigo" placeholder="Codigo" name="codigo" ng-model="cliente.servicio.cliente.id" required>
         </div>
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="cliente.cliente.nombre">
+          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="cliente.servicio.cliente.nombre">
         </div>
       </div>
       <div class="form-group">
         <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" ng-model="cliente.cliente.apellido">
+          <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" ng-model="cliente.servicio.cliente.apellido">
         </div>
       </div>
       <div class="form-group"  ng-class="{'has-error':form.email.$invalid}">
         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" ng-model="cliente.cliente.email" required>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" ng-model="cliente.servicio.cliente.email" required>
         </div>
       </div>
       <div class="form-group">
         <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion" ng-model="cliente.cliente.direccion">
+          <input type="text" class="form-control" id="inputDireccion" placeholder="Direccion" ng-model="cliente.servicio.cliente.direccion">
         </div>
       </div>
      <!--  <div class="form-group">
         <label for="inputTelefono" class="col-sm-2 control-label">Telefono</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputTelefono" placeholder="Telefono" ng-model="cliente.cliente.telefono">
+          <input type="text" class="form-control" id="inputTelefono" placeholder="Telefono" ng-model="cliente.servicio.cliente.telefono">
         </div>
       </div> -->
       <div class="form-group">
         <label for="inputClave" class="col-sm-2 control-label">Clave</label>
         <div class="col-sm-5">
-          <input type="password" class="form-control" id="inputClave" placeholder="Clave" ng-model="cliente.cliente.password">
+          <input type="password" class="form-control" id="inputClave" placeholder="Clave" ng-model="cliente.servicio.cliente.password">
         </div>
       </div>
       <div class="form-group">
         <label for="inputConfirmar" class="col-sm-2 control-label">Confirmar</label>
         <div class="col-sm-5">
-          <input type="password" class="form-control" id="inputConfirmar" placeholder="Confirmar" ng-model="cliente.cliente.passwordConfirmation">
+          <input type="password" class="form-control" id="inputConfirmar" placeholder="Confirmar" ng-model="cliente.servicio.cliente.passwordConfirmation">
         </div>
       </div>
       <div class="form-group">

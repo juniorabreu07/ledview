@@ -1,23 +1,13 @@
-angular.module("anuncioApp.clientes").controller( "ClienteNuevoCtrl", ["Cliente", "toaster", (Cliente, toaster) -> 
+angular.module("anuncioApp.clientes").controller( "ClienteNuevoCtrl", [ "ClienteService", ( ClienteService ) -> 
 
   self = @
   
   @titulo = "Nuevo Cliente"
-  @clientes = new Cliente
-  console.log "pasooo111"
-  
-  guardar: =>
-      console.log "pasooo2234"
-      # @cliente.save().then () =>
-      #   toaster.pop({type: 'success', title: "Cliente #{@cliente.nombre} #{@cliente.apellido}", body: 'Guardado con exito'})
-      # , (e) =>
-      #   texto = ""
-      #   angular.forEach( e.data, (v,k) ->
-      #     angular.forEach( v, (v2) ->
-      #       texto += v2
-      #     )
-      #   )
-      #   toaster.pop({type: 'error', title: "Cliente #{@cliente.nombre} #{@cliente.apellido}", body: texto})
+
+  @servicio = new ClienteService
+
+  @guardar = @servicio.guardar
+
   
   return
 ])

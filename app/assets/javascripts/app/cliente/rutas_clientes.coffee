@@ -6,6 +6,12 @@ angular.module("anuncioApp.clientes").config ($routeProvider) ->
     controllerAs: "cliente"
     reloadOnSearch: false
   )
+  .when("/admin/clientes/:id/editar",
+    templateUrl: "/assets/app/cliente/form_cliente.html"
+    controller: "ClienteEditarCtrl"
+    controllerAs: "cliente"
+    reloadOnSearch: false
+  )
   .when("/admin/clientes/nuevo",
     templateUrl: "/assets/app/cliente/form_cliente.html"
     controller: "ClienteNuevoCtrl"

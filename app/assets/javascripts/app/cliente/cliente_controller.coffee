@@ -6,18 +6,18 @@ angular.module("anuncioApp.clientes").controller( "ClienteCtrl", [ "Cliente", "t
     @clientes = clientes
 
 
-  # @eliminarUsuario = (usuario) =>
-  #   if confirm( "Desea eliminar el Usuario #{usuario.nombre} #{usuario.apellido}")
-  #     usuario.delete().then () =>
-  #       toaster.pop({type: 'success', title: "Usuario #{usuario.nombre} #{usuario.apellido}", body: 'Eliminado con exito'})
-  #       @usuarios.splice( @usuarios.indexOf( usuario ), 1 )
-  #     , (e) =>
-  #       texto = ""
-  #       angular.forEach( e.data, (v,k) ->
-  #         angular.forEach( v, (v2) ->
-  #           texto += v2
-  #         )
-  #       )
-  #       toaster.pop({type: 'error', title: "Usuario #{usuario.nombre} #{usuario.apellido}", body: texto})
+  @eliminarCliente = (cliente) =>
+    if confirm( "Desea eliminar el Cliente #{cliente.nombre} #{cliente.apellido}")
+      cliente.delete().then () =>
+        toaster.pop({type: 'success', title: "Cliente #{cliente.nombre} #{cliente.apellido}", body: 'Eliminado con exito'})
+        # @clientes.splice( @clientes.indexOf( cliente ), 1 )
+      , (e) =>
+        texto = ""
+        angular.forEach( e.data, (v,k) ->
+          angular.forEach( v, (v2) ->
+            texto += v2
+          )
+        )
+        toaster.pop({type: 'error', title: "Cliente #{cliente.nombre} #{cliente.apellido}", body: texto})
   return
 ])
