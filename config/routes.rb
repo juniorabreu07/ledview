@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :usuarios
   resources :clientes
-
+  resources :pantallas
+  resources :provincias
+  resources :anuncios
+ 
   scope :admin do 
     match "/*path", to: "inicio#admin", via: [:get,:post]
   end

@@ -13,6 +13,30 @@
 
 ActiveRecord::Schema.define(version: 20151019022143) do
 
+  create_table "anuncios", force: :cascade do |t|
+    t.string   "descripcion"
+    t.string   "texto"
+    t.integer  "cliente_id"
+    t.string   "estado"
+    t.date     "fecha_end"
+    t.time     "hora"
+    t.decimal  "precio"
+    t.string   "cfile"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "tipo"
+  end
+
+  add_index "anuncios", ["cliente_id"], name: "index_anuncios_on_cliente_id"
+
+  create_table "anuncios_provincia", force: :cascade do |t|
+    t.integer "anuncio_id"
+    t.integer "provincia_id"
+  end
+
+  add_index "anuncios_provincia", ["anuncio_id"], name: "index_anuncios_provincia_on_anuncio_id"
+  add_index "anuncios_provincia", ["provincia_id"], name: "index_anuncios_provincia_on_provincia_id"
+
   create_table "clientes", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -30,10 +54,28 @@ ActiveRecord::Schema.define(version: 20151019022143) do
     t.datetime "updated_at",                          null: false
     t.string   "cedula"
     t.string   "direccion"
+    t.string   "username"
   end
 
   add_index "clientes", ["email"], name: "index_clientes_on_email", unique: true
   add_index "clientes", ["reset_password_token"], name: "index_clientes_on_reset_password_token", unique: true
+  add_index "clientes", ["username"], name: "index_clientes_on_username", unique: true
+
+  create_table "pantallas", force: :cascade do |t|
+    t.date     "tiempo"
+    t.integer  "provincia_id"
+    t.string   "descripcion"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "pantallas", ["provincia_id"], name: "index_pantallas_on_provincia_id"
+
+  create_table "provincias", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "nombre"
