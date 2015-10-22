@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6 col-xs-12">
+  <div class="col-sm-9 col-xs-14">
     <div class="panel panel-default">
       <div class="panel-heading">Clientes
       <span class="pull-right"><a href="/admin/clientes/nuevo" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus" ></i></a></span>
@@ -7,16 +7,18 @@
       <div class="panel-body">
         <table class="table table-bordered">
         <tr>
-          <th>Codigo</th>
+          <th>Username</th>
           <th>Nombre</th>
           <th>Email</th>
+          <th>Cedula</th>
           <th>Direccion</th>
           <th class="centrar"  style="width: 10%">Acciones</th>
         </tr>
         <tr ng-repeat="row in cliente.clientes">
-          <td>{{row.id}}</td>
+          <td>{{row.username}}</td>
           <td>{{row.nombre}} {{row.apellido}}</td>
           <td>{{row.email}}</td>
+          <td>{{row.cedula}}</td>
           <td>{{row.direccion}}</td>
           <td class="centrar">
             <div class="btn-group btn-group-xs" role="group">

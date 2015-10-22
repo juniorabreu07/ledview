@@ -9,7 +9,7 @@ angular.module("anuncioApp.pantallas").config ($routeProvider) ->
   .when("/admin/pantallas/nueva",
     templateUrl: "/assets/app/pantalla/form_pantalla.html"
     controller: "PantallaNuevaCtrl"
-    controllerAs: "provincia"
+    controllerAs: "pantalla"
     reloadOnSearch: false
   )
   .when("/admin/pantallas/:id/editar",
