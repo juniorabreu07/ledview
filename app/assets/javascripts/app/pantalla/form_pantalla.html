@@ -4,11 +4,12 @@
 <div class="row">
     <div class="col-sm-4 col-xs-8">
     <ng-form class="form-horizontal" novalidate name="form">
-      <div class="form-group" ng-controller="ProvinciaCtrl as provincias">
+      <div class="form-group" ng-controller="ProvinciaCtrl as provincia">
           <label for="disabledSelect" class="col-sm-3 control-label">Provincias</label>
           <div class="col-sm-8">
-            <select id="disabledSelect" class="form-control">
-              <option ng-repeat="row in provincias.provincia">{{row.nombre}}</option>
+            <select id="disabledSelect" class="form-control" selected="selected" chosen="chosen-select" ng-model="pantalla.servicio.pantalla.provincia_id" >
+              <option ng-repeat="row in provincia.provincia" value="{{row.id}}">{{row.nombre}}</option>
+             <!-- <select ng-model="selectedItem" ng-options="row.nombre for row in provincia.provincia"> -->
             </select>
           </div>
       </div>

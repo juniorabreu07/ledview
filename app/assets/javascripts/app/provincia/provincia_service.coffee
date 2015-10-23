@@ -9,7 +9,7 @@ angular.module("anuncioApp.provincias").factory( "ProvinciaService", ["Provincia
 
     guardar: =>
       @provincia.save().then () =>
-        toaster.pop({type: 'success', title: "Provincia #{@provincia.nombre} #{@provincia.apellido}", body: 'Guardado con exito'})
+        toaster.pop({type: 'success', title: "Provincia #{@provincia.nombre} ", body: 'Guardado con exito'})
       , (e) =>
         texto = ""
         angular.forEach( e.data, (v,k) ->
@@ -17,5 +17,5 @@ angular.module("anuncioApp.provincias").factory( "ProvinciaService", ["Provincia
             texto += v2
           )
         )
-        toaster.pop({type: 'error', title: "Provincia #{@provincia.nombre} #{@provincia.apellido}", body: texto})
+        toaster.pop({type: 'error', title: "Provincia #{@provincia.nombre}", body: texto})
 ])
