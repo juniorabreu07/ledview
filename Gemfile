@@ -34,7 +34,7 @@ gem 'sprockets'
 # gem 'capistrano-rails', group: :development
 gem 'angularjs-rails'
 
-gem 'tzinfo-data'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
