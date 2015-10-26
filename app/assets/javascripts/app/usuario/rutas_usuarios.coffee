@@ -18,3 +18,4 @@ angular.module("anuncioApp.usuarios").config ($routeProvider) ->
     controllerAs: "usuario"
     reloadOnSearch: false
   )
+  
