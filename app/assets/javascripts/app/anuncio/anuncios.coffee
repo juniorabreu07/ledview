@@ -4,5 +4,6 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
     name: 'anuncio'
     serializer: railsSerializer ->
       @exclude( "createdAt","updatedAt")
+      @resource('cliente', 'Cliente' )
   return resource
 ])

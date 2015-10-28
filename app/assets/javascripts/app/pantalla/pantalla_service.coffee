@@ -9,6 +9,8 @@ angular.module("anuncioApp.pantallas").factory( "PantallaService", ["Pantalla", 
             @provincia = _.find(@provincias, (item) -> item.id is pantalla.provinciaId )
       else
         @pantalla = new Pantalla
+        Provincia.query().then (provincias) =>
+            @provincias = provincias
 
     guardar: =>
       @pantalla.provinciaId = @provincia.id
