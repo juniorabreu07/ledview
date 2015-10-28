@@ -1,4 +1,4 @@
-angular.module("anuncioApp.anuncios").controller( "ClienteNuevoCtrl", [ "AnuncioService", ( AnuncioService ) -> 
+angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrl", [ "AnuncioService", ( AnuncioService ) -> 
 
   self = @
   

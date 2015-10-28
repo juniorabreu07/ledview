@@ -19,6 +19,16 @@
           <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion" ng-model="anuncio.servicio.anuncio.descripcion">
         </div>
       </div>
+       <div class="form-group">
+          <label for="disabledSelect" class="col-sm-2 control-label">Tipo</label>
+          <div class="col-sm-8">
+            <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.anuncio.tipo">
+              <option>Texto</option>
+              <option>Imagen</option>
+              <option>Video</option>
+            </select>
+          </div>
+      </div>
       <div class="form-group">
         <label for="inputTexto" class="col-sm-2 control-label">Texto</label>
         <div class="col-sm-8">
@@ -38,6 +48,7 @@
         <label for="inputHora" class="col-sm-2 control-label">Hora</label>
         <div class="col-sm-10" >
           <input type="text" class="form-control date" id="inputHora" placeholder="Hora" ng-model="anuncio.servicio.anuncio.hora">
+          <input type="text" class="form-control" uib-datepicker-popup="medium" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
         </div>
       </div>
       <div class="form-group">
