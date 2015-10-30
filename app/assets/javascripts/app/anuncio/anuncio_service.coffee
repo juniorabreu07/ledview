@@ -1,4 +1,4 @@
-angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cliente", "toaster", (Anuncio, Cliente, toaster) ->
+angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cliente",'Provincia', "toaster", (Anuncio, Cliente,Provincia, toaster) ->
   class AnuncioService 
     constructor: (id=undefined) ->
       if id 
@@ -11,6 +11,11 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cli
         @anuncio = new Anuncio
         Cliente.query().then (clientes) =>
           @clientes = clientes
+          Provincia.query().then (provincias) =>
+            @provincias = provincias
+            console.log @provincias
+    
+
 
     guardar: =>
       @anuncio.clienteId = @cliente.id

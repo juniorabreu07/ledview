@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20151019022143) do
     t.string   "apellido"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "username"
     t.string   "cedula"
     t.string   "direccion"
+    t.string   "username"
   end
 
   add_index "clientes", ["email"], name: "index_clientes_on_email", unique: true

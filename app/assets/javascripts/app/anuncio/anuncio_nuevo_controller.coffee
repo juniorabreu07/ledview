@@ -8,6 +8,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrl", [ "Anuncio
 
   @guardar = @servicio.guardar
 
-  
+  @dt =new Date()
+  console.log @dt
   return
 ])

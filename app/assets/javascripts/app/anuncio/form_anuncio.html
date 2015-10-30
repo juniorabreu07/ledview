@@ -7,7 +7,7 @@
       <div class="form-group">
           <label for="disabledSelect" class="col-sm-2 control-label">Clientes</label>
           <div class="col-sm-8">
-            <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" ng-options="row.nombre for row in anuncio.servicio.clientes">
+            <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
             </select>
           </div>
       </div>
@@ -45,10 +45,10 @@
           </div>
       </div>
      <div class="form-group" data-datepicker="true">
-        <label for="inputHora" class="col-sm-2 control-label">Hora</label>
+        <label for="inputHora" class="col-sm-2 control-label">Hora{{dt}}</label>
         <div class="col-sm-10" >
-          <input type="text" class="form-control date" id="inputHora" placeholder="Hora" ng-model="anuncio.servicio.anuncio.hora">
-          <input type="text" class="form-control" uib-datepicker-popup="medium" ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+          <input type="text" class="form-control date" id="inputHora"  ng-model="anuncio.servicio.anuncio.hora">
+          <input type="text" class="form-control" uib-datepicker-popup="medium" init-date="dt" ng-model="dt" />
         </div>
       </div>
       <div class="form-group">
