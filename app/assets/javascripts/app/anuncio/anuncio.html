@@ -13,6 +13,7 @@
           <th>Cliente</th>
           <th>Descripcion</th>
           <th>Texto</th>
+          <th>Tipo</th>
           <th>Estado</th>
           <th>Hora</th>
           <th>Finaliza</th>
@@ -20,12 +21,13 @@
         </tr>
         <tr ng-repeat="row in anuncio.anuncios">
     <!--         :descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :tipo -->
-          <td>{{row.cliente_id}}</td>
+          <td>{{row.clienteId}}</td>
           <td>{{row.descripcion}}</td>
           <td>{{row.texto}}</td>
+          <td>{{row.tipo}}</td>
           <td>{{row.estado}}</td>
           <td>{{row.hora}}</td>
-          <td>{{row.fecha_end}}</td>
+          <td>{{row.fechaEnd}}</td>
           <td class="centrar">
             <div class="btn-group btn-group-xs" role="group">
               <a href="/admin/anuncios/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>

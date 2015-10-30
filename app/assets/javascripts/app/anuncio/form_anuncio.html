@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2>{{anuncio.titulo}}</h2>
+  <h2>{{anuncio.titulo}} {{anuncio.hora}}</h2>
 </div>
 <div class="row">
   <div class="col-sm-8 col-xs-12">
@@ -44,17 +44,16 @@
             </select>
           </div>
       </div>
-     <div class="form-group" data-datepicker="true">
-        <label for="inputHora" class="col-sm-2 control-label">Hora{{dt}}</label>
+     <div class="form-group" >
+        <label for="inputHora" class="col-sm-2 control-label">Hora{{anuncio.servicio.tiempo}}</label>
         <div class="col-sm-10" >
-          <input type="text" class="form-control date" id="inputHora"  ng-model="anuncio.servicio.anuncio.hora">
-          <input type="text" class="form-control" uib-datepicker-popup="medium" init-date="dt" ng-model="dt" />
+          <input type="time" class="form-control" id="inputcomienza" value="{{anuncio.hora}}" autocomplete="on">
         </div>
       </div>
       <div class="form-group">
         <label for="inputFinaliza" class="col-sm-2 control-label">Finaliza</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd">
+          <input type="text" class="form-control" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd">
         </div>
       </div>
      <!--  <div class="form-group">

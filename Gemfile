@@ -33,7 +33,8 @@ gem 'sprockets'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'angularjs-rails'
-
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
+                              :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :development, :test do

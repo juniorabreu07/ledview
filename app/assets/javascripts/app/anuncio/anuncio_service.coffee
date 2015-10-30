@@ -14,8 +14,8 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cli
           Provincia.query().then (provincias) =>
             @provincias = provincias
             console.log @provincias
-    
 
+    @hora = "23:20:50.52"
 
     guardar: =>
       @anuncio.clienteId = @cliente.id

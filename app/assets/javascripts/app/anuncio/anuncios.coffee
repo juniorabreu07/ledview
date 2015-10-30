@@ -8,3 +8,4 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
       @resource('provincia', 'Provincia' )
   return resource
 ])
+
