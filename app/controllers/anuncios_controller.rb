@@ -36,11 +36,24 @@ class AnunciosController < ApplicationController
       end
     end
   end
+  def time2
+    # time = Time.parse(anuncio_params[:hora])
+    time = anuncio_params[:hora].to_time()
+    time =time.strftime("%H:%M:%S.%3N")
+    puts time.class
+    # anuncio_params.new(hora: time)
+
+    puts "=+++++++++++++================"
+    
+    puts  anuncio_params.class
+    puts "=+++++++++++++================"
+  end
 
   # PATCH/PUT /anuncios/1
   # PATCH/PUT /anuncios/1.json
   def update
     respond_to do |format|
+      time2
       if @anuncio.update(anuncio_params)
         format.html { redirect_to @anuncio, notice: 'Anuncio was successfully updated.' }
         format.json { render :show, status: :ok, location: @anuncio }

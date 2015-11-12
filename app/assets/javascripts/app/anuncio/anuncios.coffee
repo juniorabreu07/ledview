@@ -8,4 +8,8 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
       @resource('provincia', 'Provincia' )
   return resource
 ])
-
+angular.module('anuncioApp.anuncios').filter('date', ->
+  (date) ->
+    if date != null
+      date =moment(date).utc().format("HH:mm:ss")
+)
