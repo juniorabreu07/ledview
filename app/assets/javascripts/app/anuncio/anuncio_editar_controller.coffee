@@ -7,7 +7,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$route
   @titulo = "Editar Anuncio"
 
   @servicio = new AnuncioService id 
-  
+   
   @guardar = @servicio.guardar
   return
 ])

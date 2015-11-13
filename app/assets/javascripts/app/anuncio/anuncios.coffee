@@ -6,6 +6,7 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
       @exclude( "createdAt","updatedAt")
       @resource('cliente', 'Cliente' )
       @resource('provincia', 'Provincia' )
+      @resource('anunciosProvincia', 'AnunciosProv' )
   return resource
 ])
 angular.module('anuncioApp.anuncios').filter('date', ->

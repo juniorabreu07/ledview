@@ -1,29 +1,32 @@
 angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cliente",'Provincia', "toaster", (Anuncio, Cliente,Provincia, toaster) ->
   class AnuncioService 
     constructor: (id=undefined) ->
+      @provincias = []
+      this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
-          # anuncio.hora = moment(anuncio.hora).format('HH:mm:ss')
-          anuncio.hora =moment(anuncio.hora).utc().toDate()
-          console.log anuncio.hora
+          anuncio.hora =moment(anuncio.hora).utc().toDate()        
           @anuncio = anuncio
           Cliente.query().then (clientes) =>
             @clientes = clientes
-            @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId )          
+            @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
+            Provincia.query().then (provincias) =>  
+              provincias.forEach((item) =>
+                @provincias.push item.nombre
+                )  
       else
         @anuncio = new Anuncio
+        @anuncio.tipo = "Texto"
         Cliente.query().then (clientes) =>
           @clientes = clientes
           Provincia.query().then (provincias) =>
-            @provincias = provincias
-            # console.log @provincias
-
+            provincias.forEach((item) =>
+              @provincias.push item.nombre
+              ) 
 
     guardar: =>
       @anuncio.clienteId = @cliente.id
-      # @anuncio.hora = moment(@anuncio.hora).toDate()
       @anuncio.hora = moment(@anuncio.hora).toDate()
-      console.log @anuncio.hora.toString, "akk"
       @anuncio.save().then () =>
         console.log @anuncio.hora, "el dos"
         @anuncio.hora = moment(@anuncio.hora).toDate()

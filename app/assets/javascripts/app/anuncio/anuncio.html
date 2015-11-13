@@ -2,7 +2,7 @@
   <h2>Anuncios</h2>
 </div>
 <div class="row">
-  <div class="col-sm-9 col-xs-14">
+  <div class="col-sm-8 col-xs-14">
     <div class="panel panel-default">
       <div class="panel-heading">Anuncios
       <span class="pull-right"><a href="/admin/anuncios/nuevo" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus" ></i></a></span>
@@ -12,7 +12,6 @@
         <tr>
           <th>Cliente</th>
           <th>Descripcion</th>
-          <th>Texto</th>
           <th>Tipo</th>
           <th>Estado</th>
           <th>Hora</th>
@@ -20,10 +19,8 @@
           <th class="centrar"  style="width: 10%">Acciones</th>
         </tr>
         <tr ng-repeat="row in anuncio.anuncios">
-    <!--         :descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :tipo -->
           <td>{{row.clienteId}}</td>
           <td>{{row.descripcion}}</td>
-          <td>{{row.texto}}</td>
           <td>{{row.tipo}}</td>
           <td>{{row.estado}}</td>
           <td>{{row.hora | date}}</td>
