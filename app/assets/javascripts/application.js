@@ -23,6 +23,6 @@
 //= require angular-animate
 //= require angular-sanitize
 //= require angularjs/rails/resource
-//= require angular-ui-select2
+//= require angular-ui-select
 //= require app/principal
 //= require_tree .

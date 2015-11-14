@@ -82,6 +82,6 @@ class AnunciosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def anuncio_params
-      params.require(:anuncio).permit(:descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :tipo,:provincias)
+      params.require(:anuncio).permit(:descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :tipo,:provincias, anuncios_provincia_attributes: [:id, :provincia_id, :_destroy])
     end
 end

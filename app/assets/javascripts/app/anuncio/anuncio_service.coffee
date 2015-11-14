@@ -1,34 +1,42 @@
-angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio","Cliente",'Provincia', "toaster", (Anuncio, Cliente,Provincia, toaster) ->
+angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "AnuncioProvincia", "Cliente",'Provincia', "toaster", (Anuncio, AnuncioProvincia, Cliente,Provincia, toaster) ->
   class AnuncioService 
     constructor: (id=undefined) ->
       @provincias = []
+      @provinciasSeleccionadas = []
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
-          anuncio.hora =moment(anuncio.hora).utc().toDate()        
+          anuncio.hora = moment(anuncio.hora).utc().toDate()        
           @anuncio = anuncio
           Cliente.query().then (clientes) =>
             @clientes = clientes
             @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
             Provincia.query().then (provincias) =>  
-              provincias.forEach((item) =>
-                @provincias.push item.nombre
-                )  
+              @provincias = provincias
+              angular.forEach( anuncio.anunciosProvincia, (item) =>
+                encontrada = _.find( provincias, (valor) -> valor.id is item.provinciaId )
+                @provinciasSeleccionadas.push encontrada
+              )
       else
         @anuncio = new Anuncio
         @anuncio.tipo = "Texto"
         Cliente.query().then (clientes) =>
           @clientes = clientes
-          Provincia.query().then (provincias) =>
-            provincias.forEach((item) =>
-              @provincias.push item.nombre
-              ) 
+          Provincia.query().then (provincias) =>  
+            @provincias = provincias
 
     guardar: =>
       @anuncio.clienteId = @cliente.id
+      # console.log @anuncio.cfile,"file"
       @anuncio.hora = moment(@anuncio.hora).toDate()
+      @anuncio.anunciosProvincia = []
+      angular.forEach( @provinciasSeleccionadas, (item) =>
+        valor = new AnuncioProvincia( provinciaId: item.id,destroy: "1" )
+        @anuncio.anunciosProvincia.push valor
+      )
+      console.log @anuncio.anunciosProvincia
       @anuncio.save().then () =>
-        console.log @anuncio.hora, "el dos"
+        # console.log @anuncio.hora, "el dos"
         @anuncio.hora = moment(@anuncio.hora).toDate()
         toaster.pop({type: 'success', title: "Anuncio ", body: 'Guardado con exito'})
       , (e) =>

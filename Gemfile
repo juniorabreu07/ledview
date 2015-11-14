@@ -38,12 +38,13 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # gem 'angular-ui-select2-rails', :git =>'https://github.com/rails-assets/angular-ui-select2-rails.git'
 
-gem 'angular-ui-select2-rails', '~> 0.1.1'
+gem 'angular-ui-select-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
-gem 'select2-rails', '4.0.0'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

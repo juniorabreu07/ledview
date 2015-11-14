@@ -5,11 +5,11 @@
   <div class="col-sm-8 col-xs-12">
     <ng-form class="form-horizontal" novalidate name="form">
       <div class="form-group">
-          <label for="disabledSelect" class="col-sm-2 control-label">Clientes</label>
-          <div class="col-sm-8">
-            <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
-            </select>
-          </div>
+        <label for="disabledSelect" class="col-sm-2 control-label">Clientes</label>
+        <div class="col-sm-8">
+          <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
+          </select>
+        </div>
       </div>
       <div class="form-group">
         <label for="inputDescripcion" class="col-sm-2 control-label">Descripcion</label>
@@ -17,14 +17,16 @@
           <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion" ng-model="anuncio.servicio.anuncio.descripcion">
         </div>
       </div>
-       <div class="form-group col-sm-12 ">
+      <div class="form-group">
         <label for="disabledProvincias" class="col-sm-2 control-label">Provincias</label>
-        <ui-select multiple id="disabledProvincias"  class="col-sm-10 " style="position:relative; width: 200px;" ng-model="anuncio.servicio.multipleDemo.colors" theme="select2" ng-disabled="disabled">
-          <ui-select-match >{{$item}}</ui-select-match>
-          <ui-select-choices repeat="color in anuncio.servicio.provincias  | filter:$select.search" >
-            {{color}}
+        <div class="col-sm-6">
+          <ui-select multiple id="disabledProvincias" style="width:100%" ng-model="anuncio.servicio.provinciasSeleccionadas" ng-disabled="disabled" theme="bootstrap">
+          <ui-select-match >{{$item.nombre}}</ui-select-match required>
+          <ui-select-choices repeat="provincia in anuncio.servicio.provincias  | filter:$select.search " >
+            {{provincia.nombre}}
           </ui-select-choices>
         </ui-select>
+        </div>
       </div>
       <div class="form-group">
        <label for="disabledSelect" class="col-sm-2 control-label">Tipo</label>
@@ -32,34 +34,34 @@
           <select ng-model="anuncio.servicio.anuncio.tipo" class="form-control"  ng-options="item for item in anuncio.servicio.items">
           </select>
         </div>
-        <div class="animate-switch-container" ng-switch on="anuncio.servicio.anuncio.tipo">
-            <div class="animate-switch" ng-switch-when="Imagen" class="form-group">
-              <div class="form-group" > </div>
-              <div class="form-group">
-                <label for="inputImagen" class="col-sm-2 control-label">Imagen</label>
-                <div class="col-sm-8">
-                  <input type="file" class="form-control" id="inputImagen" placeholder="Descripcion" ng-model="anuncio.servicio.anuncio.cfile">
-                </div>
-              </div>
-            </div><!-- imagen -->
-            <div class="animate-switch" ng-switch-when="Video">
-              <div class="form-group" > </div>
-              <div class="form-group">
-                <label for="inputVideo" class="col-sm-2 control-label">Video</label>
-                <div class="col-sm-8">
-                  <input type="file" class="form-control" id="inputVideo" placeholder="Descripcion" ng-model="anuncio.servicio.anuncio.cfile">
-                </div>
-              </div>
+      </div>
+      <div class="animate-switch-container" ng-switch on="anuncio.servicio.anuncio.tipo">
+        <div class="animate-switch" ng-switch-when="Imagen" class="form-group">
+          
+          <div class="form-group">
+            <label for="inputImagen" class="col-sm-2 control-label">Imagen</label>
+            <div class="col-sm-8">
+              <input type="file"  accept="image/*" class="form-control" id="inputImagen" ng-model="anuncio.servicio.anuncio.cfile">
             </div>
-            <div class="animate-switch" ng-switch-default>
-              <div class="form-group" > </div>
-              <div class="form-group">
-                <label for="inputTexto" class="col-sm-2 control-label">Texto</label>
-                <div class="col-sm-8">
-                <textarea class="form-control" rows="4" ng-model="anuncio.servicio.anuncio.texto"></textarea>
-              </div>
+          </div>
+        </div><!-- imagen -->
+        <div class="animate-switch" ng-switch-when="Video">
+         
+          <div class="form-group">
+            <label for="inputVideo" class="col-sm-2 control-label">Video</label>
+            <div class="col-sm-8">
+              <input type="file"  accept="image/*" class="form-control" id="inputVideo"  ng-model="anuncio.servicio.anuncio.cfile">
             </div>
+          </div>
+        </div>
+        <div class="animate-switch" ng-switch-default>
+          
+          <div class="form-group">
+            <label for="inputTexto" class="col-sm-2 control-label">Texto</label>
+            <div class="col-sm-8">
+              <textarea class="form-control" rows="4" ng-model="anuncio.servicio.anuncio.texto"></textarea>
             </div>
+          </div>
         </div>
       </div>
       <div class="form-group">

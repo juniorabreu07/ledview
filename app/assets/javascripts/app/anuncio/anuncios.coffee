@@ -1,3 +1,10 @@
+angular.module("anuncioApp.anuncios").factory("AnuncioProvincia", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+  resource = railsResourceFactory
+    name: 'anunciosProvincia'
+  return resource
+])
+
+
 angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   resource = railsResourceFactory
     url: '/anuncios'
@@ -6,9 +13,11 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
       @exclude( "createdAt","updatedAt")
       @resource('cliente', 'Cliente' )
       @resource('provincia', 'Provincia' )
-      @resource('anunciosProvincia', 'AnunciosProv' )
+      @nestedAttribute('anunciosProvincia');
   return resource
 ])
+
+
 angular.module('anuncioApp.anuncios').filter('date', ->
   (date) ->
     if date != null
