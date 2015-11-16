@@ -24,6 +24,5 @@
 //= require angular-sanitize
 //= require angularjs/rails/resource
 //= require angular-ui-select
-//= require angularjs-file-upload
 //= require app/principal
 //= require_tree .

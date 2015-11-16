@@ -44,7 +44,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     angular-ui-select-rails (0.12.1)
-    angularjs-file-upload-rails (1.1.6)
     angularjs-rails (1.4.7)
     angularjs-rails-resource (2.0.0)
     arel (6.0.3)
@@ -60,11 +59,6 @@ GEM
       sass (>= 3.3.0)
     builder (3.2.2)
     byebug (6.0.2)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -186,13 +180,11 @@ PLATFORMS
 
 DEPENDENCIES
   angular-ui-select-rails
-  angularjs-file-upload-rails (~> 1.1.6)
   angularjs-rails
   angularjs-rails-resource (~> 2.0.0)
   bootstrap-datepicker-rails!
   bootstrap-sass
   byebug
-  carrierwave
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)

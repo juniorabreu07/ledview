@@ -39,8 +39,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # gem 'angular-ui-select2-rails', :git =>'https://github.com/rails-assets/angular-ui-select2-rails.git'
 
 gem 'angular-ui-select-rails'
-gem 'angularjs-file-upload-rails', '~> 1.1.6'
-gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
