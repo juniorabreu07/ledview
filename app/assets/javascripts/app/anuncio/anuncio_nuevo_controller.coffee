@@ -7,7 +7,9 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrl", [ "Anuncio
   @servicio = new AnuncioService
 
   @guardar = @servicio.guardar
-  @hora    = @servicio.time(@hora)
+  # @hora    = @servicio.time(@hora)
+  @onSelect = @servicio.onSelect
+  @onRemove = @servicio.onRemove
   
   return
 ])

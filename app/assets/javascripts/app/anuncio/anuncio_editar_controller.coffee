@@ -9,5 +9,9 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$route
   @servicio = new AnuncioService id 
    
   @guardar = @servicio.guardar
+
+  @onSelect = @servicio.onSelect
+  @onRemove = @servicio.onRemove
+  
   return
 ])

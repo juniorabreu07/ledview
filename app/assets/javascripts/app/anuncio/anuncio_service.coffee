@@ -1,7 +1,6 @@
 angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "AnuncioProvincia", "Cliente",'Provincia', "toaster", (Anuncio, AnuncioProvincia, Cliente,Provincia, toaster) ->
   class AnuncioService 
     constructor: (id=undefined) ->
-      @provincias = []
       @provinciasSeleccionadas = []
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
@@ -17,24 +16,49 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
                 encontrada = _.find( provincias, (valor) -> valor.id is item.provinciaId )
                 @provinciasSeleccionadas.push encontrada
               )
+              temp = @anuncio.anunciosProvincia 
+              @anuncio.anunciosProvincia = []
+              angular.forEach( temp, (item) =>
+                valor = new AnuncioProvincia( provinciaId: item.provinciaId, _destroy: "0",id: item.id)
+                @anuncio.anunciosProvincia.push valor
+              )
+              
       else
         @anuncio = new Anuncio
         @anuncio.tipo = "Texto"
+        @anuncio.anunciosProvincia = []
         Cliente.query().then (clientes) =>
           @clientes = clientes
           Provincia.query().then (provincias) =>  
             @provincias = provincias
 
+    onSelect: (item) =>
+      indice = @provinciasSeleccionadas.indexOf(item)
+      encontrada = _.find( @anuncio.anunciosProvincia, (valor) -> valor.provinciaId is item.id )
+      if encontrada == undefined  
+        valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "0")
+        @anuncio.anunciosProvincia.push valor
+      else
+        indice = @anuncio.anunciosProvincia.indexOf(encontrada)
+        @anuncio.anunciosProvincia.splice(indice,1)
+        valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "0",id: encontrada.id)
+        @anuncio.anunciosProvincia.push valor
+
+    onRemove:( item) =>
+      encontrada = _.find( @anuncio.anunciosProvincia, (valor) -> valor.provinciaId is item.id )
+      indice = @anuncio.anunciosProvincia.indexOf(encontrada)
+      @anuncio.anunciosProvincia.splice(indice,1)
+      valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "1",id: encontrada.id)
+      @anuncio.anunciosProvincia.push valor
+
     guardar: =>
+      if @anuncio.anunciosProvincia.length < 1
+        toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
+        return 
       @anuncio.clienteId = @cliente.id
       # console.log @anuncio.cfile,"file"
       @anuncio.hora = moment(@anuncio.hora).toDate()
-      @anuncio.anunciosProvincia = []
-      angular.forEach( @provinciasSeleccionadas, (item) =>
-        valor = new AnuncioProvincia( provinciaId: item.id,destroy: "1" )
-        @anuncio.anunciosProvincia.push valor
-      )
-      console.log @anuncio.anunciosProvincia
+     
       @anuncio.save().then () =>
         # console.log @anuncio.hora, "el dos"
         @anuncio.hora = moment(@anuncio.hora).toDate()

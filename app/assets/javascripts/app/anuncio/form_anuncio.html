@@ -4,10 +4,10 @@
 <div class="row">
   <div class="col-sm-8 col-xs-12">
     <ng-form class="form-horizontal" novalidate name="form">
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error':form.clientes.$invalid}">
         <label for="disabledSelect" class="col-sm-2 control-label">Clientes</label>
         <div class="col-sm-8">
-          <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
+          <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" name ="clientes" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
           </select>
         </div>
       </div>
@@ -17,12 +17,12 @@
           <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripcion" ng-model="anuncio.servicio.anuncio.descripcion">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error':form.provincias.$invalid}">
         <label for="disabledProvincias" class="col-sm-2 control-label">Provincias</label>
         <div class="col-sm-6">
-          <ui-select multiple id="disabledProvincias" style="width:100%" ng-model="anuncio.servicio.provinciasSeleccionadas" ng-disabled="disabled" theme="bootstrap">
-          <ui-select-match >{{$item.nombre}}</ui-select-match required>
-          <ui-select-choices repeat="provincia in anuncio.servicio.provincias  | filter:$select.search " >
+          <ui-select multiple id="disabledProvincias" style="width:100%" ng-model="anuncio.servicio.provinciasSeleccionadas" ng-disabled="disabled" theme="bootstrap" on-select="anuncio.onSelect($item)" on-remove= "anuncio.onRemove($item)">
+          <ui-select-match >{{$item.nombre}}</ui-select-match name="provincias" required>
+          <ui-select-choices repeat="provincia in anuncio.servicio.provincias  | filter:$select.search" >
             {{provincia.nombre}}
           </ui-select-choices>
         </ui-select>
@@ -38,28 +38,28 @@
       <div class="animate-switch-container" ng-switch on="anuncio.servicio.anuncio.tipo">
         <div class="animate-switch" ng-switch-when="Imagen" class="form-group">
           
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error':form.image.$invalid}">
             <label for="inputImagen" class="col-sm-2 control-label">Imagen</label>
             <div class="col-sm-8">
-              <input type="file"  accept="image/*" class="form-control" id="inputImagen" ng-model="anuncio.servicio.anuncio.cfile">
+              <input type="file"  accept="image/*" class="form-control" id="inputImagen" name="image" ng-model="anuncio.servicio.anuncio.cfile" required>
             </div>
           </div>
         </div><!-- imagen -->
         <div class="animate-switch" ng-switch-when="Video">
          
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error':form.video.$invalid}">
             <label for="inputVideo" class="col-sm-2 control-label">Video</label>
             <div class="col-sm-8">
-              <input type="file"  accept="image/*" class="form-control" id="inputVideo"  ng-model="anuncio.servicio.anuncio.cfile">
+              <input type="file"  accept="image/*" class="form-control" id="inputVideo" name="video"  ng-model="anuncio.servicio.anuncio.cfile" required>
             </div>
           </div>
         </div>
         <div class="animate-switch" ng-switch-default>
           
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-error':form.texto.$invalid}">
             <label for="inputTexto" class="col-sm-2 control-label">Texto</label>
             <div class="col-sm-8">
-              <textarea class="form-control" rows="4" ng-model="anuncio.servicio.anuncio.texto"></textarea>
+              <textarea class="form-control" rows="4" ng-model="anuncio.servicio.anuncio.texto" name="texto" required></textarea>
             </div>
           </div>
         </div>
