@@ -2,11 +2,13 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
   class AnuncioService 
     constructor: (id=undefined) ->
       @provinciasSeleccionadas = []
+      @valor
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
           anuncio.hora = moment(anuncio.hora).utc().toDate()        
           @anuncio = anuncio
+          document.getElementById('imagen').src = anuncio.cfile
           Cliente.query().then (clientes) =>
             @clientes = clientes
             @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
@@ -39,22 +41,38 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
         valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "0")
         @anuncio.anunciosProvincia.push valor
       else
-        indice = @anuncio.anunciosProvincia.indexOf(encontrada)
-        @anuncio.anunciosProvincia.splice(indice,1)
-        valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "0",id: encontrada.id)
-        @anuncio.anunciosProvincia.push valor
+        console.log encontrada
+        encontrada._destroy = "0"
 
     onRemove:( item) =>
       encontrada = _.find( @anuncio.anunciosProvincia, (valor) -> valor.provinciaId is item.id )
-      indice = @anuncio.anunciosProvincia.indexOf(encontrada)
-      @anuncio.anunciosProvincia.splice(indice,1)
-      valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "1",id: encontrada.id)
-      @anuncio.anunciosProvincia.push valor
+      encontrada._destroy = "1"
+
+    readFile: =>
+      files = document.getElementById('inputImagen').files
+      imagen = document.getElementById('imagen');
+      fileRead = new FileReader()
+      fileRead.onload = () => 
+        @valor = fileRead.result
+        console.log @valor,"valor"
+        @anuncio.cfile  = @valor
+        document.getElementById('imagen').src = fileRead.result
+
+      fileRead.readAsDataURL(files[0])
 
     guardar: =>
-      if @anuncio.anunciosProvincia.length < 1
+
+      # @valor =fileRead.result
+      console.log @valor,"va;or2"
+
+      # @anuncio.cfile =@valor
+      if @anuncio.anunciosProvincia.length < 1 
         toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
-        return 
+        return
+      else 
+        if  @anuncio.anunciosProvincia.length < 2  && @anuncio.anunciosProvincia[0]._destroy == "1"
+          toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
+          return 
       @anuncio.clienteId = @cliente.id
       # console.log @anuncio.cfile,"file"
       @anuncio.hora = moment(@anuncio.hora).toDate()

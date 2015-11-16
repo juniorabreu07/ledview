@@ -12,6 +12,6 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$route
 
   @onSelect = @servicio.onSelect
   @onRemove = @servicio.onRemove
-  
+  @readFile = @servicio.readFile
   return
 ])
