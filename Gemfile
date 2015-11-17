@@ -36,6 +36,10 @@ gem 'angularjs-rails'
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                               :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem "mini_magick"
+gem 'carrierwave'
+gem 'carrierwave-video'
+
 # gem 'angular-ui-select2-rails', :git =>'https://github.com/rails-assets/angular-ui-select2-rails.git'
 
 gem 'angular-ui-select-rails'

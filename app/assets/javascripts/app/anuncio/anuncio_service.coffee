@@ -1,14 +1,17 @@
-angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "AnuncioProvincia", "Cliente",'Provincia', "toaster", (Anuncio, AnuncioProvincia, Cliente,Provincia, toaster) ->
+angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "AnuncioProvincia", "Cliente",'Provincia', "toaster", "Upload", (Anuncio, AnuncioProvincia, Cliente,Provincia, toaster, Upload) ->
   class AnuncioService 
     constructor: (id=undefined) ->
       @provinciasSeleccionadas = []
-      @valor
+      @archivo = undefined
+      @imagen  = undefined
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
           anuncio.hora = moment(anuncio.hora).utc().toDate()        
           @anuncio = anuncio
-          document.getElementById('imagen').src = anuncio.cfile
+          @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
+          @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
+          # document.getElementById('imagen').src = anuncio.cfile
           Cliente.query().then (clientes) =>
             @clientes = clientes
             @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
@@ -41,31 +44,36 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
         valor = new AnuncioProvincia( provinciaId: item.id,_destroy: "0")
         @anuncio.anunciosProvincia.push valor
       else
-        console.log encontrada
         encontrada._destroy = "0"
 
     onRemove:( item) =>
       encontrada = _.find( @anuncio.anunciosProvincia, (valor) -> valor.provinciaId is item.id )
       encontrada._destroy = "1"
 
-    readFile: =>
-      files = document.getElementById('inputImagen').files
-      imagen = document.getElementById('imagen');
-      fileRead = new FileReader()
-      fileRead.onload = () => 
-        @valor = fileRead.result
-        console.log @valor,"valor"
-        @anuncio.cfile  = @valor
-        document.getElementById('imagen').src = fileRead.result
+    readFile: (file) =>
+      if file
+        @imagen = file
+        fileRead = new FileReader()
+        fileRead.onload = (e) => 
+          @archivo =
+            data: btoa( e.target.result )
+            name: file.name
+            type: file.type
+        fileRead.readAsBinaryString(file)
 
-      fileRead.readAsDataURL(files[0])
+    readVideo: (file) =>
+      if file
+        @video = file
+        fileRead = new FileReader()
+        fileRead.onload = (e) => 
+          @archivo =
+            data: btoa( e.target.result )
+            name: file.name
+            type: file.type
+        fileRead.readAsBinaryString(file)
+
 
     guardar: =>
-
-      # @valor =fileRead.result
-      console.log @valor,"va;or2"
-
-      # @anuncio.cfile =@valor
       if @anuncio.anunciosProvincia.length < 1 
         toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
         return
@@ -74,9 +82,8 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
           toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
           return 
       @anuncio.clienteId = @cliente.id
-      # console.log @anuncio.cfile,"file"
-      @anuncio.hora = moment(@anuncio.hora).toDate()
-     
+      @anuncio.archivo   = @archivo
+      @anuncio.hora      = moment(@anuncio.hora).toDate()
       @anuncio.save().then () =>
         # console.log @anuncio.hora, "el dos"
         @anuncio.hora = moment(@anuncio.hora).toDate()
@@ -89,30 +96,4 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", ["Anuncio", "An
           )
         )
         toaster.pop({type: 'error', title: "Anuncio ", body: texto})
-
-    time: (time)=>
-      now     = new Date() 
-      year    = now.getFullYear()
-      month   = now.getMonth()+1
-      day     = now.getDate()
-      hour    = now.getHours()
-      minute  = now.getMinutes()
-      second  = now.getSeconds()
-
-      if month.toString().length == 1 
-        month = '0'+month
-
-      if day.toString().length == 1
-        day = '0'+day
-
-      if hour.toString().length == 1 
-        hour = '0'+hour
-
-      if minute.toString().length == 1 
-        minute = '0'+minute
-
-      if second.toString().length == 1 
-        second = '0'+second
-
-      time = hour+':'+minute+':'+second
 ])

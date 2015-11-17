@@ -29,6 +29,9 @@ class AnunciosController < ApplicationController
 
     respond_to do |format|
       if @anuncio.save
+        puts "#{__method__}************************"
+        puts @anuncio.cfile.url, @anuncio.cfile.current_path
+        puts "************************"
         format.html { redirect_to @anuncio, notice: 'Anuncio was successfully created.' }
         format.json { render :show, status: :created, location: @anuncio }
       else
@@ -53,6 +56,11 @@ class AnunciosController < ApplicationController
   # PATCH/PUT /anuncios/1
   # PATCH/PUT /anuncios/1.json
   def update
+    archivo = params[:anuncio][:archivo]
+    params[:anuncio].delete(:archivo)
+    file = parse_image_data( archivo )
+    params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
+    params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
     respond_to do |format|
       if @anuncio.update(anuncio_params)
         format.html { redirect_to @anuncio, notice: 'Anuncio was successfully updated.' }
@@ -75,6 +83,29 @@ class AnunciosController < ApplicationController
   end
 
   private
+
+  def parse_image_data(filedata)
+    Rails.logger.info 'decoding now'
+    decoded_data = Base64.decode64(filedata[:data])
+    # create 'file' understandable by Carrierwave
+    @tempfile = Tempfile.new('task-image')
+    @tempfile.binmode
+    @tempfile.write decoded_data
+    @tempfile.rewind   
+    ActionDispatch::Http::UploadedFile.new(
+      :tempfile => @tempfile,
+      :content_type => filedata[:type],
+      :filename => filedata[:name]
+      )
+   end
+
+   def clean_tempfile
+      if @tempfile
+         @tempfile.close
+         @tempfile.unlink
+       end
+   end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_anuncio
       @anuncio = Anuncio.find(params[:id])
@@ -82,6 +113,6 @@ class AnunciosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def anuncio_params
-      params.require(:anuncio).permit(:descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :tipo, anuncios_provincia_attributes: [:id, :provincia_id, :_destroy])
+      params.require(:anuncio).permit(:descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :video, :tipo, anuncios_provincia_attributes: [:id, :anuncio_id, :provincia_id, :_destroy])
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019022143) do
+ActiveRecord::Schema.define(version: 20151117204156) do
 
   create_table "anuncios", force: :cascade do |t|
     t.string   "descripcion"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20151019022143) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "tipo"
+    t.string   "video"
   end
 
   add_index "anuncios", ["cliente_id"], name: "index_anuncios_on_cliente_id"
@@ -52,9 +53,9 @@ ActiveRecord::Schema.define(version: 20151019022143) do
     t.string   "apellido"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "username"
     t.string   "cedula"
     t.string   "direccion"
-    t.string   "username"
   end
 
   add_index "clientes", ["email"], name: "index_clientes_on_email", unique: true

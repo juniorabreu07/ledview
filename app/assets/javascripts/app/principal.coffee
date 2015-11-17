@@ -1,4 +1,4 @@
-angular.module("anuncioApp",['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'anuncioApp.subModulos', 'toaster','ui.select'])
+angular.module("anuncioApp",['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'anuncioApp.subModulos', 'toaster','ui.select', "ngFileUpload"])
 angular.module("anuncioApp.usuarios", [])
 angular.module("anuncioApp.clientes", [])
 angular.module("anuncioApp.provincias",[])
