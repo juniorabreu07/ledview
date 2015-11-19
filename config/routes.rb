@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'inicio#index'
+  # root 'inicio#index'
   
   resources :usuarios
   resources :clientes
@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   scope :admin do 
     match "/*path", to: "inicio#admin", via: [:get,:post]
   end
-
+  
+  match "/*path", to: "inicio#index", via: [:get,:post]
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

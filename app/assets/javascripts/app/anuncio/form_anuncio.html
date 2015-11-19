@@ -122,7 +122,7 @@
         <div class="col-sm-6" ng-if="anuncio.servicio.anuncio.tipo == 'Video'">
           <div style="width:320px;height:240px;padding:0px" class="form-control">
             <video controls="" class="image-box" autoplay>
-              <source src="/uploads/anuncio/video/2/SampleVideo_720x480_5mb.mp4"  type="video/mp4">
+              <source src="{{anuncio.servicio.video}}"  type="video/mp4">
             </video>
           </div>
           <!-- <section class="video" ng-video ng-model="interface">
