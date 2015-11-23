@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h2>Provincias</h2>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-xs-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Provincias
+      <span class="pull-right"><a href="/admin/provincias/nueva" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus" ></i></a></span>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+        <tr>
+          <th>Nombre</th>
+          <th class="centrar"  style="width: 10%">Acciones</th>
+        </tr>
+        <tr ng-repeat="row in provincia.provincia">
+          <td>{{row.nombre}}</td>
+          <td class="centrar">
+            <div class="btn-group btn-group-xs" role="group">
+              <a href="/admin/provincias/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+              <a class="btn btn-default" ng-click="provincia.eliminarProvincia(row)" ><i class="glyphicon glyphicon-remove"></i></a>
+            </div>
+          </td>
+        </tr>
+        </table>
+      </div>
+    </div>    
+  </div>
+</div>
