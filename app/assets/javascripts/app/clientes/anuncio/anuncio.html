@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h2>Anuncios</h2>
+</div>
+<div class="row">
+  <div class="col-sm-8 col-xs-14">
+    <div class="panel panel-default">
+      <div class="panel-heading">Anuncios
+      <span class="pull-right"><a href="/admin/anuncios/nuevo" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus" ></i></a></span>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+        <tr>
+          <th>Cliente</th>
+          <th>Descripcion</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Hora</th>
+          <th>Finaliza</th>
+          <th class="centrar"  style="width: 10%">Acciones</th>
+        </tr>
+        <tr ng-repeat="row in anuncio.anuncios">
+          <td>{{row.clienteId}}</td>
+          <td>{{row.descripcion}}</td>
+          <td>{{row.tipo}}</td>
+          <td>{{row.estado}}</td>
+          <td>{{row.hora | date}}</td>
+          <td>{{row.fechaEnd}}</td>
+          <td class="centrar">
+            <div class="btn-group btn-group-xs" role="group">
+              <a href="/admin/anuncios/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
+              <a class="btn btn-default" ng-click="anuncio.eliminarAnuncio(row)" ><i class="glyphicon glyphicon-remove"></i></a>
+            </div>
+          </td>
+        </tr>
+        </table>
+      </div>
+    </div>    
+  </div>
+</div>
