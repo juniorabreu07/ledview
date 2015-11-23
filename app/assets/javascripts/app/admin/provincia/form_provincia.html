@@ -4,10 +4,10 @@
 <div class="row">
   <div class="col-sm-4 col-xs-8">
     <ng-form class="form-horizontal" novalidate name="form">
-      <div class="form-group">
+      <div class="form-group" ng-class="{'has-error':form.inprovincia.$invalid}">
         <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" ng-model="provincia.servicio.provincia.nombre">
+          <input type="text" class="form-control" id="inputNombre" name="inprovincia" placeholder="Nombre" ng-model="provincia.servicio.provincia.nombre" required>
         </div>
       </div>
       <div class="form-group">

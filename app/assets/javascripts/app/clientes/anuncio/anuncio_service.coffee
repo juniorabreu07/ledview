@@ -31,8 +31,9 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
               )
               
       else
-        @anuncio = new Anuncio
-        @anuncio.tipo = "Texto"
+        @anuncio                   = new Anuncio
+        @anuncio.tipo              = "Texto"
+        @anuncio.estado            = "Inactivo"
         @anuncio.anunciosProvincia = []
         Cliente.query().then (clientes) =>
           @clientes = clientes
@@ -77,13 +78,17 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
 
 
     guardar: =>
+      esError = false
       if @anuncio.anunciosProvincia.length < 1 
+        esError = true
+      else 
+        if @anuncio.anunciosProvincia.length < 2  && @anuncio.anunciosProvincia[0]._destroy == "1"
+          esError = true
+
+      if esError 
         toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
         return
-      else 
-        if  @anuncio.anunciosProvincia.length < 2  && @anuncio.anunciosProvincia[0]._destroy == "1"
-          toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
-          return 
+
       @anuncio.clienteId = @cliente.id
       @anuncio.archivo   = @archivo
       @anuncio.hora      = moment(@anuncio.hora).toDate()

@@ -26,7 +26,7 @@
         <div class="col-sm-12  form-group" ng-class="{'has-error':form.provincias.$invalid}">
           <label for="disabledProvincias" class="col-sm-2 control-label">Provincias</label>
           <div class="col-sm-8">
-            <ui-select multiple id="disabledProvincias" style="width:100%" ng-model="anuncio.servicio.provinciasSeleccionadas" ng-disabled="disabled" theme="bootstrap" on-select="anuncio.onSelect($item)" on-remove= "anuncio.onRemove($item)">
+            <ui-select name="provincias" multiple  ng-required="true" id="disabledProvincias" style="width:100%" ng-model="anuncio.servicio.provinciasSeleccionadas" ng-disabled="disabled" theme="bootstrap" on-select="anuncio.onSelect($item)" on-remove= "anuncio.onRemove($item)">
             <ui-select-match>{{$item.nombre}}</ui-select-match>
             <ui-select-choices repeat="provincia in anuncio.servicio.provincias  | filter:$select.search" >
               {{provincia.nombre}}
@@ -54,7 +54,7 @@
                   <div class="col-sm-8">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input class="form-control" type="file" ngf-select="anuncio.readFile($file)" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-resize="{width: 320, height: 240}">
+                        <input class="form-control" type="file" name="image" ngf-select="anuncio.readFile($file)" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-resize="{width: 320, height: 240}" required>
                       </div>
                     </div>
                   </div>
@@ -64,7 +64,7 @@
                 <div class="form-group" ng-class="{'has-error':form.video.$invalid}">
                   <label for="inputVideo" class="col-sm-4 control-label">Video</label>
                   <div class="col-sm-8">
-                    <input class="form-control" type="file" ngf-select="anuncio.readVideo($file)" name="file" ngf-pattern="'video/*'" accept="video/*" ngf-max-size="30MB" ngf-resize="{width: 320, height: 240}">
+                    <input class="form-control" type="file" name="video" ngf-select="anuncio.readVideo($file)" name="file" ngf-pattern="'video/*'" accept="video/*" ngf-max-size="30MB" ngf-resize="{width: 320, height: 240}" required>
                   </div>
                 </div>
               </div>
@@ -85,23 +85,25 @@
                 <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.anuncio.estado">
                   <option>Activo</option>
                   <option>Inactivo</option>
+                  <option>Rechazado</option>
+                  <option>Publicado</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="form-group" >
+            <div class="form-group" ng-class="{'has-error':form.hora.$invalid}" >
               <label for="inputHora" class="col-sm-4 control-label">Hora</label>
               <div class="col-sm-8" >
-                <input type="time" class="form-control" id="inputcomienza" ng-model="anuncio.servicio.anuncio.hora" autocomplete="on" required>
+                <input type="time" class="form-control" id="inputcomienza" name="hora" ng-model="anuncio.servicio.anuncio.hora" autocomplete="on" required>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':form.finaliza.$invalid}">
               <label class="col-sm-4 control-label">Finaliza</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd">
+                <input type="text" class="form-control" name="finaliza" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd" required>
               </div>
             </div>
           </div>

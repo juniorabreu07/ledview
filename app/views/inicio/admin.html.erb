@@ -37,12 +37,12 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
-              <i class="glyphicon glyphicon-user icon-white"></i> <%= current_usuario.nombre %>
+              <i class="glyphicon glyphicon-user icon-white"></i> <%= current_usuario.nombre %>   <%= current_usuario.apellido %> 
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <!-- <li><%#= link_to raw("<i class='icon-pencil'></i> #{t(:edit_password)}"), edit_usuario_registration_path, target: "_self" %></li> -->
-              <li><%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> Editar"), "/administracion/usuarios/#{current_usuario.id}/edit" %></li>
+              <li><%= link_to raw("<i class='glyphicon glyphicon-pencil'></i> Editar"), "/admin/usuarios/#{current_usuario.id}/editar" %></li>
               <li><%= link_to raw("<i class='glyphicon glyphicon-trash'></i> #{t(:logout)}"), destroy_usuario_session_path, method: :delete, target: "_self" %></li>
               <!-- <li><a href="#"><i class="glyphicon glyphicon-ban-circle"></i> Ban</a></li> -->
             </ul>

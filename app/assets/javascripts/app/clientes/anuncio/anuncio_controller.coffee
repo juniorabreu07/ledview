@@ -4,7 +4,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioCtrl", [ "Anuncio", "t
 
   Anuncio.query().then (anuncios) =>
     @anuncios = anuncios
-
+    
 
   @eliminarAnuncio = (cliente) =>
     if confirm( "Desea eliminar el Anuncio #{cliente.nombre} #{cliente.apellido}")

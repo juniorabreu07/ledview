@@ -4,7 +4,7 @@ class AnunciosController < ApplicationController
   # GET /anuncios
   # GET /anuncios.json
   def index
-    @anuncios = Anuncio.where(estado: 'Activo')
+    @anuncios = Anuncio.all
     # @anuncioProvincia = AnuncioProvincia.all
   end
 
@@ -32,7 +32,7 @@ class AnunciosController < ApplicationController
         puts "#{__method__}************************"
         puts @anuncio.cfile.url, @anuncio.cfile.current_path
         puts "************************"
-        format.html { redirect_to @anuncio, notice: 'Anuncio was successfully created.' }
+        format.html { redirect_to @anuncio, notice: 'Anuncio se ha creado correctamente.' }
         format.json { render :show, status: :created, location: @anuncio }
       else
         format.html { render :new }
@@ -56,14 +56,23 @@ class AnunciosController < ApplicationController
   # PATCH/PUT /anuncios/1
   # PATCH/PUT /anuncios/1.json
   def update
-    archivo = params[:anuncio][:archivo]
-    params[:anuncio].delete(:archivo)
-    file = parse_image_data( archivo )
-    params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
-    params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
+    if anuncio_params[:tipo] == 'Imagen' || anuncio_params[:tipo] == 'Video' 
+      puts "soy Imagen"
+      archivo = params[:anuncio][:archivo] 
+      params[:anuncio].delete(:archivo)
+      file = parse_image_data( archivo )
+      params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
+      params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
+    else
+      params[:anuncio][:video] = nil  
+      params[:anuncio][:cfile]  = nil
+      
+    end
+    # params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
+    # params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
     respond_to do |format|
       if @anuncio.update(anuncio_params)
-        format.html { redirect_to @anuncio, notice: 'Anuncio was successfully updated.' }
+        format.html { redirect_to @anuncio, notice: 'Anuncio se ha actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @anuncio }
       else
         format.html { render :edit }
@@ -77,7 +86,7 @@ class AnunciosController < ApplicationController
   def destroy
     @anuncio.destroy
     respond_to do |format|
-      format.html { redirect_to anuncios_url, notice: 'Anuncio was successfully destroyed.' }
+      format.html { redirect_to anuncios_url, notice: 'Anuncio fue eliminado con éxito.' }
       format.json { head :no_content }
     end
   end
