@@ -2,7 +2,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrl", [ "Anuncio
 
   self = @
 
-  @titulo = "Nuevo Anuncio"
+  @titulo = "Nuevo Anuncio admin" 
  
   @servicio = new AnuncioService
 

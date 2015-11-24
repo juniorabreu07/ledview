@@ -25,6 +25,15 @@ class AnunciosController < ApplicationController
   # POST /anuncios
   # POST /anuncios.json
   def create
+    # if anuncio_params[:cliente_id].blank?
+    #   anuncio_params[:cliente_id] = current_user.id
+    #   puts "==============="
+    #     puts current_user.id
+    #     puts current_user.nombre
+    #     puts anuncio_params[:cliente_id]
+    #   puts "==============="
+      
+    # end
     @anuncio = Anuncio.new(anuncio_params)
 
     respond_to do |format|

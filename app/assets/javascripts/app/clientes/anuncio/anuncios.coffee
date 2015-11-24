@@ -21,5 +21,5 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
 angular.module('anuncioApp.anuncios').filter('date', ->
   (date) ->
     if date != null
-      date =moment(date).utc().format("HH:mm:ss")
+      date = moment(date).format("HH:mm:ss")
 )

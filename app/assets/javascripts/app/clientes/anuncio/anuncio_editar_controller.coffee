@@ -4,7 +4,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$scope
 
   id = $routeParams.id
   
-  @titulo = "Editar Anuncio"
+  @titulo = "Editar Anuncio cliente"
 
   @servicio = new AnuncioService id 
    

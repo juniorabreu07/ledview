@@ -1,11 +1,10 @@
 <!-- <h2>Sign up</h2> -->
 <%= render partial: "shared/flash_messages", flash: flash %>
 
-<!-- <%= devise_error_messages! %> -->
+<%= devise_error_messages! %>
 <div class="row">
 	<div class="col-sm-8 col-xs-12">
 		<%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-horizontal", novalidate: "",name: "form"}) do |f| %>
-
 			<div class="form-group">
 				<label class="col-sm-offset-2 col-sm-10" style="font-weight:normal;font-size:18px;">Registrar</label>
 			</div>
@@ -33,10 +32,10 @@
 			  	<%= f.email_field :email, autofocus: true, id:"inputEmail", class: "form-control", placeholder: "Email" %>
         </div>
       </div>
-			<div class="form-group">
+      <div class="form-group"  ng-class="{'has-error':form.cedula.$invalid}">
         <label for="inputCedula" class="col-sm-2 control-label">Cedula</label>
-        <div class="col-sm-10">
-			  	<%= f.text_field :cedula, autofocus: true,id:"inputCedula", class: "form-control", placeholder: "Cedula" %>
+        <div class="col-sm-8">
+          <%= f.text_field :cedula,name: "cedula", autofocus: true, id:"inputCedula", class: "form-control", placeholder: "Cedula" %>
         </div>
       </div>
 			<div class="form-group">
@@ -58,7 +57,7 @@
         </div>
       </div>
 		 		<div class="form-group">
-        <div class="col-sm-offset-2 col-sm-3">
+        <div class="col-sm-offset-2 col-sm-4">
         	<%= f.submit "Registrar", class: "btn btn-primary pull-right" %>
 					<%= render "devise/shared/links" %>
         </div>
