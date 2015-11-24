@@ -4,7 +4,7 @@ class AnunciosController < ApplicationController
   # GET /anuncios
   # GET /anuncios.json
   def index
-    @anuncios = Anuncio.all
+    @anuncios = current_user.anuncios
     # @anuncioProvincia = AnuncioProvincia.all
   end
 
@@ -29,9 +29,6 @@ class AnunciosController < ApplicationController
 
     respond_to do |format|
       if @anuncio.save
-        puts "#{__method__}************************"
-        puts @anuncio.cfile.url, @anuncio.cfile.current_path
-        puts "************************"
         format.html { redirect_to @anuncio, notice: 'Anuncio se ha creado correctamente.' }
         format.json { render :show, status: :created, location: @anuncio }
       else

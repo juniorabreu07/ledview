@@ -4,7 +4,15 @@ class ApplicationController < ActionController::Base
   devise_group :person, contains: [:cliente, :usuario]
   before_action :authenticate_person! # Ensure someone is logged in
 
-  alias_method :current_user, :current_usuario
+  def set_usuario
+    if current_usuario.nil?
+      current_cliente
+    else
+      current_usuario
+    end
+  end
 
   protect_from_forgery with: :exception
+
+  alias_method :current_user, :set_usuario
 end

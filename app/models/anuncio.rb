@@ -8,4 +8,6 @@ class Anuncio < ActiveRecord::Base
 
   accepts_nested_attributes_for :anuncios_provincia, allow_destroy: true
 
+
+  
 end

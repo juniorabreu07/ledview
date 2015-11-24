@@ -7,10 +7,10 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
-          anuncio.hora = moment(anuncio.hora).utc().toDate()        
-          @anuncio = anuncio
-          @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
-          @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
+          anuncio.hora = moment(anuncio.hora).utc().toDate()
+          @anuncio     = anuncio
+          @imagen      = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
+          @video       = anuncio.video.video.url if anuncio.tipo == 'Video'
           # $http.get(@video).then (a) ->
           #   console.log a
           # document.getElementById('imagen').src = anuncio.cfile
@@ -92,9 +92,11 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
       @anuncio.clienteId = @cliente.id
       @anuncio.archivo   = @archivo
       @anuncio.hora      = moment(@anuncio.hora).toDate()
+      console.log @anuncio.hora
       @anuncio.save().then () =>
         # console.log @anuncio.hora, "el dos"
         @anuncio.hora = moment(@anuncio.hora).toDate()
+        console.log @anuncio.hora
         toaster.pop({type: 'success', title: "Anuncio ", body: 'Guardado con exito'})
       , (e) =>
         texto = ""
