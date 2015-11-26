@@ -18,8 +18,14 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
 ])
 
 
-angular.module('anuncioApp.anuncios').filter('date', ->
+angular.module('anuncioApp.anuncios').filter('FileterTime', ->
+  (ctimer) ->
+    if ctimer != null
+      ctimer = moment(ctimer).format("HH:mm:ss")
+)
+
+angular.module('anuncioApp.anuncios').filter('FilterDate', ->
   (date) ->
     if date != null
-      date = moment(date).format("HH:mm:ss")
+      date = moment(date).format("DD/MM/YYYY")
 )

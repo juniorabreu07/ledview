@@ -2,20 +2,21 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
   class AnuncioService 
     constructor: (id=undefined) ->
       @provinciasSeleccionadas = []
-      @archivo = undefined
-      @imagen  = undefined
-      @hora    = moment().toDate()
+      @archivo                 = undefined
+      @imagen                  = undefined
+      @hora                    = moment().toDate()
+      @startDate               = moment(new Date).subtract(1, 'days').toDate()
+      @startDate               = moment(@startDate).format("DD/MM/YYYY")
+      @horaTemp                = moment().toDate()
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
-          @hora = moment(anuncio.hora).toDate()
-          anuncio.hora = moment(anuncio.hora).utc().toDate()        
+          @hora             = moment(anuncio.hora).toDate()
+          @horaTemp         = @hora
+          @anuncio.fechaEnd = moment(@anuncio.fechaEnd).format("DD/MM/YYYY")     
           @anuncio = anuncio
           @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
           @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
-          # $http.get(@video).then (a) ->
-          #   console.log a
-          # document.getElementById('imagen').src = anuncio.cfile
           Cliente.query().then (clientes) =>
             @clientes = clientes
             @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
@@ -67,7 +68,6 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
         fileRead.readAsBinaryString(file)
 
     readVideo: (file) =>
-      console.log file
       if file
         @video = file
         fileRead = new FileReader()
@@ -80,21 +80,29 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
 
 
     guardar: =>
-      esError = false
-      if @anuncio.anunciosProvincia.length < 1 
-        esError = true
-      else 
-        if @anuncio.anunciosProvincia.length < 2  && @anuncio.anunciosProvincia[0]._destroy == "1"
-          esError = true
+      esError = true
+      if @anuncio.anunciosProvincia.length < 1
+        esError = false
+      if esError
+        for index in [0..@anuncio.anunciosProvincia.length] when index < @anuncio.anunciosProvincia.length
+          if @anuncio.anunciosProvincia[index]._destroy == "0" || @anuncio.anunciosProvincia[index]._destroy == undefined
+            esError = true
+            break
+          else 
+            esError = false
 
-      if esError 
+      if !esError 
         toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
         return
+
       @anuncio.clienteId = @cliente.id
       @anuncio.archivo   = @archivo
-      @anuncio.hora      = moment.utc(@hora).utcOffset("-0004").format('YYYY-MM-DD HH:mm:ss')
+      if (@hora != @horaTemp)
+        @anuncio.hora      = moment.utc(@hora).utcOffset("-0004").format('YYYY-MM-DD HH:mm:ss')
       @anuncio.save().then () =>
-        @hora = moment(@anuncio.hora).toDate()
+        if (@hora != @horaTemp)
+          @hora = moment(@anuncio.hora).utc("+0004").toDate()
+        @anuncio.fechaEnd = moment(@anuncio.fechaEnd).format("DD/MM/YYYY")
         toaster.pop({type: 'success', title: "Anuncio ", body: 'Guardado con exito'})
       , (e) =>
         texto = ""

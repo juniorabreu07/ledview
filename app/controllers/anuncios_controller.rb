@@ -25,16 +25,11 @@ class AnunciosController < ApplicationController
   # POST /anuncios
   # POST /anuncios.json
   def create
-    # if anuncio_params[:cliente_id].blank?
-    #   anuncio_params[:cliente_id] = current_user.id
-    #   puts "==============="
-    #     puts current_user.id
-    #     puts current_user.nombre
-    #     puts anuncio_params[:cliente_id]
-    #   puts "==============="
-      
-    # end
     @anuncio = Anuncio.new(anuncio_params)
+
+    if anuncio_params[:cliente_id].blank?
+      @anuncio.cliente_id = current_user.id
+    end
 
     respond_to do |format|
       if @anuncio.save
@@ -46,36 +41,17 @@ class AnunciosController < ApplicationController
       end
     end
   end
-  def time2
-    # # time = Time.parse(anuncio_params[:hora])
-    # time = anuncio_params[:hora].to_time()
-    # time =time.strftime("%H:%M:%S.%3N")
-    # puts time.class
-    # # anuncio_params.new(hora: time)
-
-    # puts "=+++++++++++++================"
-
-    # puts  anuncio_params.class
-    # puts "=+++++++++++++================"
-  end
 
   # PATCH/PUT /anuncios/1
   # PATCH/PUT /anuncios/1.json
   def update
-    if anuncio_params[:tipo] == 'Imagen' || anuncio_params[:tipo] == 'Video' 
-      puts "soy Imagen"
-      archivo = params[:anuncio][:archivo] 
-      params[:anuncio].delete(:archivo)
-      file = parse_image_data( archivo )
-      params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
-      params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
-    else
-      params[:anuncio][:video] = nil  
-      params[:anuncio][:cfile]  = nil
       
-    end
-    # params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
-    # params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
+    archivo = params[:anuncio][:archivo] 
+    params[:anuncio].delete(:archivo)
+    file = parse_image_data( archivo ) if archivo
+    params[:anuncio][:cfile] = file if anuncio_params[:tipo] == 'Imagen'
+    params[:anuncio][:video] = file if anuncio_params[:tipo] == 'Video'
+    
     respond_to do |format|
       if @anuncio.update(anuncio_params)
         format.html { redirect_to @anuncio, notice: 'Anuncio se ha actualizado correctamente.' }

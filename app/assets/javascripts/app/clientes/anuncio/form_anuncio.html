@@ -6,15 +6,6 @@
   <div class="col-sm-8 col-xs-12">
     <form class="form-horizontal" novalidate name="form">
       <div class="row">
-        <div class="col-sm-12 form-group" ng-class="{'has-error':form.clientes.$invalid}">
-          <label for="disabledSelect" class="col-sm-2 control-label">Clientes</label>
-          <div class="col-sm-4">
-            <select id="disabledSelect" class="form-control" ng-model="anuncio.servicio.cliente" name ="clientes" ng-options="row.nombre for row in anuncio.servicio.clientes" required>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-sm-12 form-group">
           <label for="inputDescripcion" class="col-sm-2 control-label">Descripcion</label>
           <div class="col-sm-8">
@@ -54,7 +45,7 @@
                   <div class="col-sm-8">
                     <div class="row">
                       <div class="col-sm-12">
-                        <input class="form-control" type="file" ngf-select="anuncio.readFile($file)" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-resize="{width: 320, height: 240}">
+                        <input class="form-control" type="file" ngf-select="anuncio.readFile($file)" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-resize="{width: 320, height: 240}" required>
                       </div>
                     </div>
                   </div>
@@ -64,7 +55,7 @@
                 <div class="form-group" ng-class="{'has-error':form.file.$invalid}">
                   <label for="inputVideo" class="col-sm-4 control-label">Video</label>
                   <div class="col-sm-8">
-                    <input class="form-control" type="file" ngf-select="anuncio.readVideo($file)" name="file" ngf-pattern="'video/*'" accept="video/*" ngf-max-size="30MB" ngf-resize="{width: 320, height: 240}">
+                    <input class="form-control" type="file" ngf-select="anuncio.readVideo($file)" name="file" ngf-pattern="'video/*'" accept="video/*" ngf-max-size="30MB" ngf-resize="{width: 320, height: 240}" required>
                   </div>
                 </div>
               </div>
@@ -93,15 +84,15 @@
             <div class="form-group" >
               <label for="inputHora" class="col-sm-4 control-label">Hora</label>
               <div class="col-sm-8" >
-                <input type="time" class="form-control" id="inputcomienza" ng-model="anuncio.servicio.hora" autocomplete="on" required>
+                <input type="time" class="form-control"  id="inputcomienza" ng-model="anuncio.servicio.hora" autocomplete="on" >
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':form.finaliza.$invalid}">
               <label class="col-sm-4 control-label">Finaliza</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd">
+                <input type="text" class="form-control" name="finaliza" data-date-format="dd/mm/yyyy"  data-date-start-date="anuncio.servicio.startDate" data-provide='datepicker'  id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd" required >
               </div>
             </div>
           </div>

@@ -103,7 +103,7 @@
             <div class="form-group" ng-class="{'has-error':form.finaliza.$invalid}">
               <label class="col-sm-4 control-label">Finaliza</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="finaliza" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd" required>
+                <input type="text" class="form-control" name="finaliza" data-date-start-date="anuncio.servicio.startDate" data-date-format="dd/mm/yyyy" data-provide='datepicker'  data-date-format="dd/mm/yyyy" id="inputFinaliza" placeholder="Finaliza" ng-model="anuncio.servicio.anuncio.fechaEnd" required>
               </div>
             </div>
           </div>

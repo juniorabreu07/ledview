@@ -23,8 +23,8 @@
           <td>{{row.descripcion}}</td>
           <td>{{row.tipo}}</td>
           <td>{{row.estado}}</td>
-          <td>{{row.hora | date}}</td>
-          <td>{{row.fechaEnd}}</td>
+          <td>{{row.hora | FileterTime}}</td>
+          <td>{{row.fechaEnd | FilterDate}}</td>
           <td class="centrar">
             <div class="btn-group btn-group-xs" role="group">
               <a href="/anuncios/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
