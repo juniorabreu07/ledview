@@ -6,7 +6,7 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
       @imagen                  = undefined
       @startDate               = moment(new Date).subtract(1, 'days').toDate()
       @startDate               = moment(@startDate).format("DD/MM/YYYY")
-      @hora                    = moment().toDate()
+      @hora                    = moment().utc("+0004").toDate()
       @horaTemp                = moment().toDate()
       this.items               = ['Texto', 'Imagen', 'Video']
       if id 
@@ -96,7 +96,8 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
       @anuncio.save().then () =>
         console.log @anuncio.hora
         if (@hora != @horaTemp)
-          @hora = moment(@anuncio.hora).utc("+0004").toDate()
+          @hora     = moment(@anuncio.hora).utc("+0004").toDate()
+          @horaTemp = @hora
         @anuncio.fechaEnd = moment(@anuncio.fechaEnd).format("DD/MM/YYYY")
         toaster.pop({type: 'success', title: "Anuncio ", body: 'Guardado con exito'})
       , (e) =>
