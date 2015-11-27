@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h2>Configurar Pantallas</h2>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-xs-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">Pantallas
+      <!-- <span class="pull-right"><a href="/pantallas/nueva" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus" ></i></a></span> -->
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+        <tr>
+          <th>Nombre</th>
+          <th class="centrar"  style="width: 10%">Acciones</th>
+        </tr>
+        <tr ng-repeat="row in pantalla.pantalla">
+          <td>{{row.descripcion}}</td>
+          <td class="centrar">
+            <div class="btn-group btn-group-xs" role="group">
+              <!-- <a href="/pantallas/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-cog"></i></a> -->
+              <a class="btn btn-default" ng-click="pantalla.ConfigurarPantalla(row)" ><i class="glyphicon glyphicon-cog"></i></a>
+            </div>
+          </td>
+        </tr>
+        </table>
+      </div>
+    </div>    
+  </div>
+</div>

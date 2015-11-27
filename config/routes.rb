@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  match "/pantallas", to: "inicio#pantalla", via: [:get,:post]
+  scope :pantallas do 
+    match "*path", to: "inicio#pantalla", via: [:get,:post]
+    match "/*path", to: "inicio#pantalla", via: [:get,:post]
+  end
   
   match "/admin", to: "inicio#admin", via: [:get,:post]
   scope :admin do 

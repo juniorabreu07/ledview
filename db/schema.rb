@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117204156) do
+ActiveRecord::Schema.define(version: 20151127163148) do
 
   create_table "anuncios", force: :cascade do |t|
     t.string   "descripcion"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151117204156) do
     t.string   "descripcion"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "configurada"
   end
 
   add_index "pantallas", ["provincia_id"], name: "index_pantallas_on_provincia_id"

@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h2>{{pantalla.titulo}}</h2>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-xs-8">
+    <ng-form class="form-horizontal" novalidate name="form">
+      <div class="form-group" ng-class="{'has-error':form.provincias.$invalid}">
+          <label for="disabledSelect" class="col-sm-3 control-label">Provincias</label>
+          <div class="col-sm-8">
+            <select id="disabledSelect" name="provincias" class="form-control" ng-model="pantalla.servicio.provincia" ng-options="row.nombre for row in pantalla.servicio.provincias" required>
+            </select>
+          </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error':form.descripcion.$invalid}">
+        <label for="inputDescripcion" class="col-sm-3 control-label">Descripcion</label>
+        <div class="col-sm-8">
+          <input type="text" name="descripcion" class="form-control" id="inputDescripcion" placeholder="Descripcion" ng-model="pantalla.servicio.pantalla.descripcion" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-default" ng-disabled="form.$invalid" ng-click="pantalla.guardar()">Guardar</button>
+          <button class="btn btn-default" ng-disabled="form.$invalid" ng-click="pantalla.guardarArchivo()">ARCHIVO</button>
+          <a href="/pantallas" class="btn btn-default">Retornar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

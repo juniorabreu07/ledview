@@ -4,4 +4,7 @@ class InicioController < ApplicationController
   def admin
     
   end
+  def pantalla
+  end
+  
 end

@@ -69,6 +69,6 @@ class PantallasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pantalla_params
-      params.require(:pantalla).permit(:tiempo, :provincia_id, :descripcion)
+      params.require(:pantalla).permit(:tiempo, :provincia_id, :descripcion,:configurada)
     end
 end
