@@ -29,9 +29,6 @@ class AnunciosController < ApplicationController
 
     respond_to do |format|
       if @anuncio.save
-        puts "#{__method__}************************"
-        puts @anuncio.cfile.url, @anuncio.cfile.current_path
-        puts "************************"
         format.html { redirect_to @anuncio, notice: 'Anuncio was successfully created.' }
         format.json { render :show, status: :created, location: @anuncio }
       else

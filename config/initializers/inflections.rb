@@ -103,6 +103,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   # Es necesario indicar que el plural de pais es paises y viceversa. Esto se
   # puede hacer declarándolo como irregular:
   inflect.irregular 'pais', 'paises'
+  inflect.irregular 'role', 'roles'
 
 
   # Pero es necesario agregar otra regla. Pais termina en s, pero ya está en

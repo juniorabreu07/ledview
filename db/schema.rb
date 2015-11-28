@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117204156) do
+ActiveRecord::Schema.define(version: 20151128161153) do
 
   create_table "anuncios", force: :cascade do |t|
     t.string   "descripcion"
     t.string   "texto"
-    t.integer  "cliente_id"
     t.string   "estado"
     t.date     "fecha_end"
     t.time     "hora"
@@ -26,9 +25,10 @@ ActiveRecord::Schema.define(version: 20151117204156) do
     t.datetime "updated_at",  null: false
     t.string   "tipo"
     t.string   "video"
+    t.integer  "usuario_id"
   end
 
-  add_index "anuncios", ["cliente_id"], name: "index_anuncios_on_cliente_id"
+  add_index "anuncios", ["usuario_id"], name: "index_anuncios_on_usuario_id"
 
   create_table "anuncios_provincia", force: :cascade do |t|
     t.integer "anuncio_id"
@@ -78,6 +78,11 @@ ActiveRecord::Schema.define(version: 20151117204156) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "descripcion"
+    t.string "nombre"
+  end
+
   create_table "usuarios", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
@@ -98,10 +103,12 @@ ActiveRecord::Schema.define(version: 20151117204156) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username"
+    t.integer  "role_id"
   end
 
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  add_index "usuarios", ["role_id"], name: "index_usuarios_on_role_id"
   add_index "usuarios", ["username"], name: "index_usuarios_on_username", unique: true
 
 end
