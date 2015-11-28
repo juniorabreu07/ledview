@@ -1,3 +1,0 @@
-class Admin < Usuario
-
-end
