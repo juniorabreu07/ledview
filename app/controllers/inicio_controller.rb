@@ -7,9 +7,6 @@ class InicioController < ApplicationController
       end
     else
       redirect_to :root
-      puts "#{__method__}************************"
-      puts "salida"
-      puts "************************"
     end
   end
 

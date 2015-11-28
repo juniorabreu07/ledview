@@ -1,5 +1,6 @@
 class PantallasController < ApplicationController
   before_action :set_pantalla, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /pantallas
   # GET /pantallas.json

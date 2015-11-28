@@ -39,6 +39,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem "mini_magick"
 gem 'carrierwave'
 gem 'carrierwave-video'
+gem 'cancancan', '~> 1.9'
 
 # gem 'angular-ui-select2-rails', :git =>'https://github.com/rails-assets/angular-ui-select2-rails.git'
 
