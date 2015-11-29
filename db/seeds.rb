@@ -5,5 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-	Usuario.create( {nombre: "admin", username: "admin", password: "admin", password_confirmation: "admin", email: "juniorabreu201@gmail.com", admin: true})
-  Cliente.create( {nombre: "Junior", apellido: "Abreu", username: "admin", password: "admin", password_confirmation: "admin", email: "juniorabreu201@gmail.com"} )
+
+if Role.count < 2
+  Role.create!( {descripcion: "Administrador", nombre: "admin" } )
+  Role.create!( {descripcion: "Cliente", nombre: "cliente" } )
+end
+
+Usuario.create!( {nombre: "admin", username: "admin", password: "admin", password_confirmation: "admin", email: "juniorabreu201@gmail.com", admin: true, role_id: Role.first.id})
+
+
+Usuario.create!( {nombre: "cliente", username: "cliente", password: "cliente", password_confirmation: "cliente", email: "cliente@gmail.com", admin: false, role_id: Role.last.id})
+
