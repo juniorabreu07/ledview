@@ -1,4 +1,4 @@
-angular.module("anuncioApp.pantallas").controller( "PantallaEditarCtrl", [ "$routeParams", "PantallaService", ($routeParams, PantallaService) -> 
+angular.module("anuncioApp.pantallas").controller( "PantallaEditarCtrl", [ "$routeParams", "PantallaServiceMain", ($routeParams, PantallaServiceMain) -> 
 
   self = @
 
@@ -6,7 +6,7 @@ angular.module("anuncioApp.pantallas").controller( "PantallaEditarCtrl", [ "$rou
   
   @titulo = "Editar Pantalla"
 
-  @servicio = new PantallaService id 
+  @servicio = new PantallaServiceMain id 
 
   @guardar = @servicio.guardar
 

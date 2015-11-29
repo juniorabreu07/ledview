@@ -1,6 +1,7 @@
-angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anuncio", "AnuncioProvincia", "Cliente",'Provincia', "toaster", "Upload", ($http, Anuncio, AnuncioProvincia, Cliente,Provincia, toaster, Upload) ->
-  class AnuncioService 
+angular.module("anuncioApp.anuncios").factory( "AnuncioServiceAdmin", [ "$http", "Anuncio", "AnuncioProvincia", "Usuario",'Provincia', "toaster", "Upload", ($http, Anuncio, AnuncioProvincia, Usuario,Provincia, toaster, Upload) ->
+  class AnuncioServiceAdmin 
     constructor: (id=undefined) ->
+      console.log "admin anunciosProvincia"
       @provinciasSeleccionadas = []
       @archivo                 = undefined
       @imagen                  = undefined
@@ -17,9 +18,10 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
           @anuncio = anuncio
           @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
           @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
-          Cliente.query().then (clientes) =>
-            @clientes = clientes
-            @cliente  = _.find(@clientes, (item) -> item.id is anuncio.clienteId ) 
+          Usuario.query().then (usuarios) =>
+            console.log usuarios
+            @usuarios = usuarios
+            @usuario  = _.find(@usuarios, (item) -> item.id is anuncio.usuarioId ) 
             Provincia.query().then (provincias) =>  
               @provincias = provincias
               angular.forEach( anuncio.anunciosProvincia, (item) =>
@@ -38,8 +40,8 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
         @anuncio.tipo              = "Texto"
         @anuncio.estado            = "Inactivo"
         @anuncio.anunciosProvincia = []
-        Cliente.query().then (clientes) =>
-          @clientes = clientes
+        Usuario.query().then (usuarios) =>
+          @usuarios = usuarios
           Provincia.query().then (provincias) =>  
             @provincias = provincias
 
@@ -95,7 +97,7 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
         toaster.pop({type: 'error', title: "Advertencia!!", body: 'Porfavor seleccione provincias'})
         return
 
-      @anuncio.clienteId = @cliente.id
+      @anuncio.usuarioId = @usuario.id
       @anuncio.archivo   = @archivo
       if (@hora != @horaTemp)
         @anuncio.hora      = moment.utc(@hora).utcOffset("-0004").format('YYYY-MM-DD HH:mm:ss')

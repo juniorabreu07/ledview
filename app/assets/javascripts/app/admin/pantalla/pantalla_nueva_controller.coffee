@@ -1,10 +1,10 @@
-angular.module("anuncioApp.pantallas").controller( "PantallaNuevaCtrl", [ "PantallaService", ( PantallaService ) -> 
+angular.module("anuncioApp.pantallas").controller( "PantallaNuevaCtrl", [ "PantallaServiceMain", ( PantallaServiceMain ) -> 
 
   self = @
   
   @titulo = "Nueva Pantalla"
-
-  @servicio = new PantallaService
+  console.log "admin"
+  @servicio = new PantallaServiceMain
 
   @guardar = @servicio.guardar
 

@@ -1,5 +1,5 @@
-angular.module("anuncioApp.pantallas").factory( "PantallaService", ["Pantalla", "Provincia", "toaster", (Pantalla, Provincia, toaster) ->
-  class PantallaService 
+angular.module("anuncioApp.pantallas").factory( "PantallaServiceMain", ["Pantalla", "Provincia", "toaster", (Pantalla, Provincia, toaster) ->
+  class PantallaServiceMain 
     constructor: (id=undefined) ->
       if id 
         Pantalla.get(id).then (pantalla) =>

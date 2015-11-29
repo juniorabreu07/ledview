@@ -1,10 +1,10 @@
-angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrl", [ "AnuncioService", ( AnuncioService ) -> 
+angular.module("anuncioApp.anuncios").controller( "AnuncioNuevoCtrlAdmin", [ "AnuncioServiceAdmin", ( AnuncioServiceAdmin ) -> 
 
   self = @
 
   @titulo = "Nuevo Anuncio admin" 
  
-  @servicio = new AnuncioService
+  @servicio = new AnuncioServiceAdmin
 
   @guardar = @servicio.guardar
   # @hora    = @servicio.time(@hora)

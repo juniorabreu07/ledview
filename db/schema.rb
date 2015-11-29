@@ -66,8 +66,9 @@ ActiveRecord::Schema.define(version: 20151128161153) do
     t.date     "tiempo"
     t.integer  "provincia_id"
     t.string   "descripcion"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "configurada",  default: false
   end
 
   add_index "pantallas", ["provincia_id"], name: "index_pantallas_on_provincia_id"

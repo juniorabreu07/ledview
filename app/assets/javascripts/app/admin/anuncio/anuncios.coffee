@@ -11,7 +11,7 @@ angular.module("anuncioApp.anuncios").factory("Anuncio", ["railsResourceFactory"
     name: 'anuncio'
     serializer: railsSerializer ->
       @exclude( "createdAt","updatedAt")
-      @resource('cliente', 'Cliente' )
+      @resource('usuario', 'Usuario' )
       @resource('provincia', 'Provincia' )
       @nestedAttribute('anunciosProvincia');
   return resource

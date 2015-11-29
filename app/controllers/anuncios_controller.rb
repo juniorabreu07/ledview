@@ -28,7 +28,7 @@ class AnunciosController < ApplicationController
   def create
     @anuncio = Anuncio.new(anuncio_params)
 
-    if anuncio_params[:cliente_id].blank?
+    if anuncio_params[:usuario_id].blank?
       @anuncio.cliente_id = current_user.id
     end
 
@@ -105,6 +105,6 @@ class AnunciosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def anuncio_params
-      params.require(:anuncio).permit(:descripcion, :texto, :cliente_id, :estado, :fecha_end, :hora, :precio, :cfile, :video, :tipo, anuncios_provincia_attributes: [:id, :anuncio_id, :provincia_id, :_destroy])
+      params.require(:anuncio).permit(:descripcion, :texto, :usuario_id, :estado, :fecha_end, :hora, :precio, :cfile, :video, :tipo, anuncios_provincia_attributes: [:id, :anuncio_id, :provincia_id, :_destroy])
     end
 end
