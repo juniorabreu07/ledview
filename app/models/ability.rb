@@ -11,7 +11,7 @@ class Ability
         can :read, [Provincia]
         can :manage, [Anuncio]
 
-        can :manage, Usuairo do |usuario|
+        can :manage, Usuario do |usuario|
             usuario.try(:usuario) == user
         end
     end

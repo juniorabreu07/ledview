@@ -29,7 +29,7 @@ class AnunciosController < ApplicationController
     @anuncio = Anuncio.new(anuncio_params)
 
     if anuncio_params[:usuario_id].blank?
-      @anuncio.cliente_id = current_user.id
+      @anuncio.usuario_id = current_user.id
     end
 
     respond_to do |format|

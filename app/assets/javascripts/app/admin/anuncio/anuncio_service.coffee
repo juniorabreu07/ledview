@@ -1,7 +1,6 @@
 angular.module("anuncioApp.anuncios").factory( "AnuncioServiceAdmin", [ "$http", "Anuncio", "AnuncioProvincia", "Usuario",'Provincia', "toaster", "Upload", ($http, Anuncio, AnuncioProvincia, Usuario,Provincia, toaster, Upload) ->
   class AnuncioServiceAdmin 
     constructor: (id=undefined) ->
-      console.log "admin anunciosProvincia"
       @provinciasSeleccionadas = []
       @archivo                 = undefined
       @imagen                  = undefined
@@ -19,7 +18,6 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioServiceAdmin", [ "$http",
           @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
           @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
           Usuario.query().then (usuarios) =>
-            console.log usuarios
             @usuarios = usuarios
             @usuario  = _.find(@usuarios, (item) -> item.id is anuncio.usuarioId ) 
             Provincia.query().then (provincias) =>  

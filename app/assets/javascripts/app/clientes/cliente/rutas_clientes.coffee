@@ -1,8 +1,8 @@
-angular.module("anuncioApp.clientes").config ($routeProvider) ->
+angular.module("anuncioApp.usuarios").config ($routeProvider) ->
   $routeProvider
-  .when("/clientes/:id/editar",
+  .when("/usuarios/:id/editar",
     templateUrl: "/assets/app/clientes/cliente/form_cliente.html"
-    controller: "ClienteEditarCtrl"
-    controllerAs: "cliente"
+    controller: "UsuarioEditarCtrl"
+    controllerAs: "usuario"
     reloadOnSearch: false
   )

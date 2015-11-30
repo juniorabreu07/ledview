@@ -3,7 +3,6 @@ angular.module("anuncioApp.pantallas").controller( "PantallaNuevaCtrl", [ "Panta
   self = @
   
   @titulo = "Nueva Pantalla"
-  console.log "admin"
   @servicio = new PantallaServiceMain
 
   @guardar = @servicio.guardar

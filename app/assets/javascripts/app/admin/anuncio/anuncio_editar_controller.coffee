@@ -13,6 +13,7 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$scope
   @onSelect = @servicio.onSelect
   @onRemove = @servicio.onRemove
   @readFile = @servicio.readFile
+  
   @readVideo = (file) =>
     @servicio.readVideo(file)
     #$scope.interface.sources.add(@servicio.video) if @servicio.video
@@ -23,7 +24,6 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$scope
 
     $scope.interface.options.setAutoplay(true)
     $scope.interface.sources.add(@servicio.video) if @servicio.video
-    console.log "cargando video", @servicio.video
     # $scope.interface.sources.add()
   )
 

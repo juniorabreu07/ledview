@@ -1,7 +1,7 @@
-angular.module("anuncioApp.clientes").factory("Cliente", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+angular.module("anuncioApp.usuarios").factory("Usuario", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   resource = railsResourceFactory
-    url: '/api/clientes'
-    name: 'cliente'
+    url: '/api/usuarios'
+    name: 'usuario'
     serializer: railsSerializer ->
       @exclude( "createdAt","updatedAt")
   return resource
