@@ -1,12 +1,13 @@
-angular.module("anuncioApp.usuarios").factory( "ClienteService", ["Cliente", "toaster", (Cliente, toaster) ->
-  class ClienteService 
+angular.module("anuncioApp.usuarios").factory( "UsuarioService", ["Usuario", "toaster", (Usuario, toaster) ->
+  class UsuarioService 
     constructor: (id=undefined) ->
       if id 
-        Cliente.get(id).then (cliente) =>
-          @cliente = cliente
+        Usuario.get(id).then (usuario) =>
+          @usuario = usuario
+
     guardar: =>
-      @cliente.save().then () =>
-        toaster.pop({type: 'success', title: "Cliente #{@cliente.nombre} #{@cliente.apellido}", body: 'Guardado con exito'})
+      @usuario.save().then () =>
+        toaster.pop({type: 'success', title: "Usuario #{@usuario.nombre} #{@usuario.apellido}", body: 'Guardado con exito'})
       , (e) =>
         texto = ""
         angular.forEach( e.data, (v,k) ->
@@ -14,5 +15,5 @@ angular.module("anuncioApp.usuarios").factory( "ClienteService", ["Cliente", "to
             texto += v2
           )
         )
-        toaster.pop({type: 'error', title: "Cliente #{@cliente.nombre} #{@cliente.apellido}", body: texto})
+        toaster.pop({type: 'error', title: "Usuario #{@usuario.nombre} #{@usuario.apellido}", body: texto})
 ])

@@ -23,7 +23,6 @@ angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$scope
 
     $scope.interface.options.setAutoplay(true)
     $scope.interface.sources.add(@servicio.video) if @servicio.video
-    console.log "cargando video", @servicio.video
     # $scope.interface.sources.add()
   )
 

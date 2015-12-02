@@ -94,7 +94,6 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioService", [ "$http", "Anu
       if (@hora != @horaTemp)
         @anuncio.hora      = moment.utc(@hora).utcOffset("-0400").format('YYYY-MM-DD HH:mm:ss')
       @anuncio.save().then () =>
-        console.log @anuncio.hora
         if (@hora != @horaTemp)
           @hora     = moment(@anuncio.hora).utc("+0004").toDate()
           @horaTemp = @hora

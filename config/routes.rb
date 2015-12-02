@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :pantallas
     resources :provincias
     resources :anuncios
+    resources :roles
   end
  
   # match 'anuncios/*path', to: 'permiso#index', via: [:get]
