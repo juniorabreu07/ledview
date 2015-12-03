@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_filter :update_sanitized_params, if: :devise_controller?
 
-  before_filter :authenticate_usuario!#, except: :pantalla # Ensure someone is logged in
+  before_filter :authenticate_usuario!, except: :pantalla # Ensure someone is logged in
 
   def set_usuario
     if current_usuario.nil?

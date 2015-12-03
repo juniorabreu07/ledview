@@ -1,6 +1,6 @@
 angular.module("anuncioApp.pantallas").config ($routeProvider) ->
   $routeProvider
-  .when("/pantallas/",
+  .when("/pantallas",
     templateUrl: "/assets/app/pantalla/pantalla.html"
     controller: "PantallaCtrl"
     controllerAs: "pantalla"
