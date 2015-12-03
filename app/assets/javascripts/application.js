@@ -25,4 +25,5 @@
 //= require angularjs/rails/resource
 //= require angular-ui-select
 //= require app/principal
+//= require websocket_rails/main
 //= require_tree .

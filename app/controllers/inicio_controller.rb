@@ -17,6 +17,7 @@ class InicioController < ApplicationController
   end
 
   def pantalla
+    
   end
   
 end

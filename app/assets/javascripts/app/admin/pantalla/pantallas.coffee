@@ -7,3 +7,11 @@ angular.module("anuncioApp.pantallas").factory("Pantalla", ["railsResourceFactor
       @resource('provincia', 'Provincia' )
   return resource
 ])
+
+angular.module('anuncioApp.anuncios').filter('configurada', ->
+  (conf) ->
+  	if conf
+  		"Configurada"
+  	else
+  		"No Configurada"
+)

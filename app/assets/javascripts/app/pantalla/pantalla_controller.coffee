@@ -1,5 +1,6 @@
-angular.module("anuncioApp.pantallas").controller( "PantallaCtrl", ["$location", "Pantalla","PantallaService", "toaster", ($location,Pantalla,PantallaService, toaster) -> 
-
+angular.module("anuncioApp.pantallas").controller( "PantallaCtrl", ["$location","$http", "Pantalla","PantallaService", "toaster", ($location,$http,Pantalla,PantallaService, toaster) -> 
+  @codigo  =""
+  @mostrar = "true"
   self = @
   pantallaLocal = JSON.parse(localStorage.getItem('provincia'));
   if pantallaLocal
@@ -19,6 +20,16 @@ angular.module("anuncioApp.pantallas").controller( "PantallaCtrl", ["$location",
   @ConfigurarPantalla = (pantalla) =>
     if confirm( "Desea configurar #{pantalla.descripcion}")
       @servicio = new PantallaService pantalla,@pantalla
+
+  @buscarPantalla = () =>
+    if @codigo
+      $http.get('/api/pantallas.json?codigo='+@codigo).success (data) ->
+        if data.length 
+          console.log "hay datos"
+        else
+          toaster.pop({type: 'info', title: "Pantalla", body: 'No encotrada'})
+
+      return
 
   @eliminarPantalla = (pantalla) =>
     console.log pantalla

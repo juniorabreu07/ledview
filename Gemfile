@@ -40,6 +40,7 @@ gem "mini_magick"
 gem 'carrierwave'
 gem 'carrierwave-video'
 gem 'cancancan', '~> 1.9'
+gem 'websocket-rails'
 
 # gem 'angular-ui-select2-rails', :git =>'https://github.com/rails-assets/angular-ui-select2-rails.git'
 

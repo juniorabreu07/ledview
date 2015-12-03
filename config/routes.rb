@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   match "/pantallas", to: "inicio#pantalla", via: [:get,:post]
-  scope :pantallas do 
-    match "*path", to: "inicio#pantalla", via: [:get,:post]
-    match "/*path", to: "inicio#pantalla", via: [:get,:post]
-  end
+  # scope :pantallas do 
+  #   match "*path", to: "inicio#pantalla", via: [:get,:post]
+  #   match "/*path", to: "inicio#pantalla", via: [:get,:post]
+  # end
   
   
   scope :api do 
