@@ -1,4 +1,4 @@
-angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrl", [ "$scope", "$routeParams", "AnuncioServiceAdmin", ($scope, $routeParams, AnuncioServiceAdmin) -> 
+angular.module("anuncioApp.anuncios").controller( "AnuncioEditarCtrlAdmin", [ "$scope", "$routeParams", "AnuncioServiceAdmin", ($scope, $routeParams, AnuncioServiceAdmin) -> 
 
   self = @
 

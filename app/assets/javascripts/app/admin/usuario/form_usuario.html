@@ -10,6 +10,15 @@
           <input type="text" class="form-control" id="inputCodigo" placeholder="Codigo" name="codigo" ng-model="usuario.servicio.usuario.username" required>
         </div>
       </div>
+       <div class="form-group" ng-class="{'has-error':form.tipoUser.$invalid}">
+        <label for="inputTipoUsuario" class="col-sm-2 control-label">Tipo de usuario</label>
+        <div class="col-sm-5">
+          <select id="inputTipoUsuario" name="tipoUser" class="form-control" ng-model="usuario.servicio.role">
+            <option>Cliente</option>
+            <option>Admin</option>
+          </select>
+        </div>
+      </div>
       <div class="form-group">
         <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
         <div class="col-sm-8">

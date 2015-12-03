@@ -1,4 +1,4 @@
-angular.module("anuncioApp.usuarios").controller( "UsuarioEditarCtrl", [ "$routeParams", "UsuarioService", ($routeParams, UsuarioService) -> 
+angular.module("anuncioApp.usuarios").controller( "UsuarioEditarCtrlAdmin", [ "$routeParams", "UsuarioServiceAdmin", ($routeParams, UsuarioServiceAdmin) -> 
 
   self = @
 
@@ -6,7 +6,7 @@ angular.module("anuncioApp.usuarios").controller( "UsuarioEditarCtrl", [ "$route
   
   @titulo = "Editar Usuario"
 
-  @servicio = new UsuarioService id 
+  @servicio = new UsuarioServiceAdmin id 
 
   @guardar = @servicio.guardar
 

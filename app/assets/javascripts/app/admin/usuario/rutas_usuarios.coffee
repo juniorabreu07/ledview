@@ -8,13 +8,13 @@ angular.module("anuncioApp.usuarios").config ($routeProvider) ->
   )
   .when("/admin/usuarios/:id/editar",
     templateUrl: "/assets/app/admin/usuario/form_usuario.html"
-    controller: "UsuarioEditarCtrl"
+    controller: "UsuarioEditarCtrlAdmin"
     controllerAs: "usuario"
     reloadOnSearch: false
   )
   .when("/admin/usuarios/nuevo",
     templateUrl: "/assets/app/admin/usuario/form_usuario.html"
-    controller: "UsuarioNuevoCtrl"
+    controller: "UsuarioNuevoCtrlAdmin"
     controllerAs: "usuario"
     reloadOnSearch: false
   )

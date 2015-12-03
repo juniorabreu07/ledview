@@ -11,12 +11,12 @@ angular.module("anuncioApp.anuncios").factory( "AnuncioServiceAdmin", [ "$http",
       this.items = ['Texto', 'Imagen', 'Video']
       if id 
         Anuncio.get(id).then (anuncio) =>
-          @hora             = moment(anuncio.hora).toDate()
-          @horaTemp         = @hora
-          @anuncio.fechaEnd = moment(@anuncio.fechaEnd).format("DD/MM/YYYY")     
-          @anuncio = anuncio
-          @imagen  = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
-          @video   = anuncio.video.video.url if anuncio.tipo == 'Video'
+          @hora            = moment(anuncio.hora).toDate()
+          @horaTemp        = @hora
+          anuncio.fechaEnd = moment(anuncio.fechaEnd).format("DD/MM/YYYY")
+          @anuncio         = anuncio
+          @imagen          = anuncio.cfile.cfile.image320x240.url if anuncio.tipo == 'Imagen'
+          @video           = anuncio.video.video.url if anuncio.tipo == 'Video'
           Usuario.query().then (usuarios) =>
             @usuarios = usuarios
             @usuario  = _.find(@usuarios, (item) -> item.id is anuncio.usuarioId ) 

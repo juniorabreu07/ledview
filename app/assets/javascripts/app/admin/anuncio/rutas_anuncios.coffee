@@ -8,7 +8,7 @@ angular.module("anuncioApp.anuncios").config ($routeProvider) ->
   )
   .when("/admin/anuncios/:id/editar",
     templateUrl: "/assets/app/admin/anuncio/form_anuncio.html"
-    controller: "AnuncioEditarCtrl"
+    controller: "AnuncioEditarCtrlAdmin"
     controllerAs: "anuncio"
     reloadOnSearch: false
   )
