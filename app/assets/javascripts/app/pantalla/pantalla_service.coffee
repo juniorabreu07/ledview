@@ -1,12 +1,9 @@
 angular.module("anuncioApp.pantallas").factory( "PantallaService", ["$location","Pantalla", "Provincia", "toaster", ($location,Pantalla, Provincia, toaster) ->
   class PantallaService 
-    constructor: (pant,pantallas) ->
-      id = pant.id
-      @pant = pant
+    constructor: (id) ->
       if id 
         Pantalla.get(id).then (pantalla) =>
           @pantalla = pantalla
-          @pantallas = pantallas
           Provincia.query().then (provincias) =>
             @provincias = provincias
             @provincia  = _.find(@provincias, (item) -> item.id is pantalla.provinciaId )
@@ -34,7 +31,6 @@ angular.module("anuncioApp.pantallas").factory( "PantallaService", ["$location",
       @pantalla.configurada = true
       @pantalla.save().then () =>
         toaster.pop({type: 'success', title: "Pantalla #{@pantalla.descripcion} ", body: 'Configurada con exito'})
-        @pantallas.splice( @pantallas.indexOf( @pant), 1 )
         $location.path('/pantallas/online')
       , (e) =>
         texto = ""

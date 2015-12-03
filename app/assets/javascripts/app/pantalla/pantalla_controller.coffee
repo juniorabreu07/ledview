@@ -18,14 +18,15 @@ angular.module("anuncioApp.pantallas").controller( "PantallaCtrl", ["$location",
 
   
   @ConfigurarPantalla = (pantalla) =>
-    if confirm( "Desea configurar #{pantalla.descripcion}")
-      @servicio = new PantallaService pantalla,@pantalla
+    if confirm( "Desea configurar #{pantalla[0].descripcion}")
+       @servicio = new PantallaService pantalla[0].id
 
   @buscarPantalla = () =>
     if @codigo
       $http.get('/api/pantallas.json?codigo='+@codigo).success (data) ->
         if data.length 
-          console.log "hay datos"
+          self.ConfigurarPantalla(data)
+          # console.log "hay datos",data[0].descripcion
         else
           toaster.pop({type: 'info', title: "Pantalla", body: 'No encotrada'})
 

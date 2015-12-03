@@ -4,7 +4,6 @@ angular.module("anuncioApp.usuarios").factory( "UsuarioServiceAdmin", ["Usuario"
       @role = "Cliente"
       if id 
         Usuario.get(id).then (usuario) =>
-          console.log usuario
           @role = "Admin"
           if usuario.role.id is 2
             @role = "Cliente"
