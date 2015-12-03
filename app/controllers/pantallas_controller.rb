@@ -4,7 +4,11 @@ class PantallasController < ApplicationController
   # GET /pantallas
   # GET /pantallas.json
   def index
-    @pantallas = Pantalla.all
+    if params[:codigo]
+      @pantallas = Pantalla.where(["codigo = :codigo", {codigo: params[:codigo]}])
+    else
+      @pantallas = Pantalla.all
+    end
   end
 
   # GET /pantallas/1
@@ -69,6 +73,6 @@ class PantallasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pantalla_params
-      params.require(:pantalla).permit(:tiempo, :provincia_id, :descripcion,:configurada)
+      params.require(:pantalla).permit(:tiempo, :provincia_id, :descripcion,:configurada,:Codigo)
     end
 end

@@ -10,11 +10,15 @@
       <div class="panel-body">
         <table class="table table-bordered">
         <tr>
+          <th>Codigo</th>
           <th>Nombre</th>
+          <th>Cofigurada</th>
           <th class="centrar"  style="width: 10%">Acciones</th>
         </tr>
         <tr ng-repeat="row in pantalla.pantalla">
+          <td>{{row.Codigo}}</td>
           <td>{{row.descripcion}}</td>
+          <td>{{row.configurada | configurada}}</td>
           <td class="centrar">
             <div class="btn-group btn-group-xs" role="group">
               <a href="/admin/pantallas/{{row.id}}/editar"class="btn btn-default" ng-click=""><i class="glyphicon glyphicon-pencil"></i></a>
